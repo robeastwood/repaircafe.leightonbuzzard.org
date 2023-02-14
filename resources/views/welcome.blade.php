@@ -10,32 +10,22 @@
     </head>
     <body class="antialiased">
         <div class="grid h-screen place-items-center">
-            <figure
-                class="md:flex justify-center bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800 w-1/2"
-            >
-                <img
-                    class="w-24 h-24 md:rounded-full mx-auto"
-                    src="https://picsum.photos/200"
-                    alt=""
-                    width="384"
-                    height="512"
-                />
-                <div class="pt-6 md:p-8 text-center space-y-4">
-                    <blockquote>
-                        <p class="text-lg font-medium">
-                            Leighton Buzzard Repair Cafe
-                        </p>
-                    </blockquote>
-                    <figcaption class="font-medium">
-                        <div class="text-sky-500 dark:text-sky-400">
-                            Coming Soon!
-                        </div>
-                        <div class="text-slate-700 dark:text-slate-500">
-                            check back later
-                        </div>
-                    </figcaption>
-                </div>
-            </figure>
+            <x-jet-authentication-card-logo />
+            <div class="pt-6 md:p-8 text-center space-y-4">
+                <blockquote>
+                    <p class="text-lg font-medium">
+                        Leighton Buzzard Repair Cafe
+                    </p>
+                </blockquote>
+                <figcaption class="font-medium">
+                    <div class="text-sky-500 dark:text-sky-400">
+                        Coming Soon!
+                    </div>
+                    <div class="text-slate-700 dark:text-slate-500">
+                        check back later
+                    </div>
+                </figcaption>
+            </div>
         </div>
     </body>
 </html>
