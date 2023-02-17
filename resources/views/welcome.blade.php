@@ -117,30 +117,6 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center mt-10">
-                    <div class="w-full md:w-7/12 px-4 mr-auto ml-auto">
-                        <h3 class="text-3xl mt-4 mb-2 font-semibold leading-normal">
-                            Why are we organising a Repair Café?
-                        </h3>
-                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            Repair Cafés are part of fixing our relationship with our belongings and things and helping reduce waste and landfill. The first Repair Café started in 2009 in Amsterdam, Holland and has grown worldwide to over 2000 cafes in various forms.
-                        </p>
-                        <h3 class="text-3xl mt-4 mb-2 font-semibold leading-normal">
-                            What types of items can be brought for repair?
-                        </h3>
-                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            We welcome small household items and appliances that you can bring to our events. These for example include:
-                        </p>
-                        <ul class="list-disc ml-10 text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            <li>Textiles and clothing repairs</li>
-                            <li>Household electrical and mechanical items such as: clocks, toasters, blenders, kettles, lamps, sewing machines, coffee machines, etc</li>
-                            <li>Electronics such as: headphones, CD/DVD Players</li>
-                            <li>Computers; desktops and laptops</li>
-                        </ul>
-                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            We do not accept large white good appliances, microwaves, televisions or mobile phones.<br/>
-                            We also do not accept bicycles, however the Buzz Cycles group runs existing regular Dr Bike repair sessions. Find out more here: https://www.facebook.com/Leightonbuzzcycles
-                        </p>
-                    </div>
                     <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
                         <div
                             class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600"
@@ -172,6 +148,33 @@
                             </blockquote>
                         </div>
                     </div>
+                    <div class="w-full md:w-7/12 px-4 mr-auto ml-auto">
+                        <p class="text-2xl text-light leading-relaxed mt-4 mb-4 text-gray-700">
+                            <a href="https://totallylocallyleightonbuzzard.wordpress.com/">Totally Locally Leighton Buzzard</a> are planning to host monthly Repair Café events in our town.
+                        </p>
+                        <h3 class="text-3xl mt-4 mb-2 font-semibold leading-normal">
+                            Why are we organising a Repair Café?
+                        </h3>
+                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
+                            Repair Cafés are part of fixing our relationship with our belongings and things and helping reduce waste and landfill. The first Repair Café started in 2009 in Amsterdam, Holland and has grown worldwide to over 2000 cafes in various forms.
+                        </p>
+                        <h3 class="text-3xl mt-4 mb-2 font-semibold leading-normal">
+                            What types of items can be brought for repair?
+                        </h3>
+                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
+                            We welcome small household items and appliances that you can bring to our events. These for example include:
+                        </p>
+                        <ul class="list-disc ml-10 text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
+                            <li>Textiles and clothing repairs</li>
+                            <li>Household electrical and mechanical items such as: clocks, toasters, blenders, kettles, lamps, sewing machines, coffee machines, etc</li>
+                            <li>Electronics such as: headphones, CD/DVD Players</li>
+                            <li>Computers; desktops and laptops</li>
+                        </ul>
+                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
+                            We do not accept large white good appliances, microwaves, televisions or mobile phones.<br/>
+                            We also do not accept bicycles, however the Buzz Cycles group runs existing regular Dr Bike repair sessions. Find out more here: https://www.facebook.com/Leightonbuzzcycles
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -197,22 +200,15 @@
             </div>
             <div class="container mx-auto px-4">
                 <div class="items-center flex flex-wrap">
-                    <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
-                        <img
-                            alt="..."
-                            class="max-w-full rounded-lg shadow-lg"
-                            src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"
-                        />
-                    </div>
                     <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
                         <div class="md:pr-12">
                             <div
                                 class="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300"
                             >
-                                <i class="fas fa-rocket text-xl"></i>
+                                <i class="fas fa-wrench text-xl"></i>
                             </div>
                             <h3 class="text-3xl font-semibold">
-                                A growing company
+                                FAQ
                             </h3>
                             <p
                                 class="mt-4 text-lg leading-relaxed text-gray-600"
@@ -228,13 +224,13 @@
                                             <span
                                                 class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"
                                                 ><i
-                                                    class="fas fa-fingerprint"
+                                                    class="fas fa-question"
                                                 ></i
                                             ></span>
                                         </div>
                                         <div>
                                             <h4 class="text-gray-600">
-                                                Carefully crafted components
+                                                How can I book to attend the Repair Café?
                                             </h4>
                                         </div>
                                     </div>
@@ -273,6 +269,13 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                    <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
+                        <img
+                            alt="Spanner"
+                            class="max-w-full rounded-lg shadow-lg"
+                            src="https://images.unsplash.com/photo-1611288875785-f62fb9b044a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=697&q=80"
+                        />
                     </div>
                 </div>
             </div>
