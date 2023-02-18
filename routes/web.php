@@ -29,10 +29,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/events', function () {
+        return view('events');
+    })->name('events');
 });
 
 // admins:
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

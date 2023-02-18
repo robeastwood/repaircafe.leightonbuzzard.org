@@ -31,7 +31,7 @@
 		<type label="Year" length="0" sql="YEAR" quote=""/>
 		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
 	</group>
-	
+
 	<group label="Miscellaneous" color="rgb(200,200,255)">
 		<type label="ENUM" length="1" sql="ENUM" quote=""/>
 		<type label="SET" length="1" sql="SET" quote=""/>
@@ -79,7 +79,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="682" y="390" name="items">
+<table x="686" y="379" name="items">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -103,11 +103,15 @@
 <row name="notes" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
+<row name="powered" null="1" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><comment>no|battery|mains|other</comment>
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="870" y="340" name="event_item">
+<table x="883" y="311" name="event_item">
 <row name="event_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -119,6 +123,9 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="items" row="id" />
 </row>
+<row name="notes" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>event_id</part>
 </key>
@@ -133,9 +140,6 @@
 <default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
-<default>NULL</default></row>
-<row name="new field" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -183,7 +187,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="444" y="428" name="category">
+<table x="435" y="432" name="category">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -193,6 +197,10 @@
 <row name="description" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
+<row name="powered" null="1" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NULL</default><comment>no|battery|mains|other</comment>
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>

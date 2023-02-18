@@ -17,6 +17,12 @@
                     </x-jet-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('events') }}" :active="request()->routeIs('events')">
+                        {{ __('Events') }}
+                    </x-jet-nav-link>
+                </div>
+
                 @if (Auth::user()->is_admin)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
@@ -100,13 +106,31 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <!-- Account Management -->
+
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Your details:') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('My Bookings') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                {{ __('My Items') }}
+                            </x-jet-dropdown-link>
+
+                            <!-- Account Management -->
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Manage Profile') }}
+                            </div>
+
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                {{ __('My Profile') }}
+                            </x-jet-dropdown-link>
+
+
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                {{ __('My Skills') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
