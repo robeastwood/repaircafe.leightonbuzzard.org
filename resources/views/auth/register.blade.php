@@ -4,6 +4,8 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
+        <div class="text mb-5">Register to attend or get involved:</div>
+
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
@@ -47,8 +49,10 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
+
+                <span class="text-sm text-gray-600 mr-1" href="{{ route('login') }}">Already registered?</span>
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Login here') }}
                 </a>
 
                 <x-jet-button class="ml-4">
