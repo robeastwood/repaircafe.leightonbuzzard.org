@@ -25,8 +25,8 @@ class EventFactory extends Factory
     public function definition(): array
     {
 
-        $starts_at = fake()->dateTimeThisYear();
-        $ends_at = Carbon::parse($starts_at)->addHours(rand(1,8));
+        $starts_at = fake()->dateTimeThisYear(Carbon::now()->addMonth());
+        $ends_at = Carbon::parse($starts_at)->addHours(rand(1, 8));
 
         return [
             'starts_at' => $starts_at,

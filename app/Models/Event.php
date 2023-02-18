@@ -14,6 +14,6 @@ class Event extends Model
      */
     public function venue()
     {
-        return $this->hasOne(Venue::class);
+        return $this->belongsTo(Venue::class);
     }
 }
