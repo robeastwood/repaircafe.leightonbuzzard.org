@@ -15,7 +15,7 @@ class EventList extends Component
     public function render()
     {
         // get future events
-        $this->futureEvents = Event::where('starts_at', '>', Carbon::now())->with('venue')->orderBy('starts_at', 'DESC')->get();
+        $this->futureEvents = Event::where('starts_at', '>', Carbon::now())->with('venue')->orderBy('starts_at', 'ASC')->get();
 
         // get skills at this
         return view('livewire.event-list');
