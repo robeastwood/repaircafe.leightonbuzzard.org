@@ -19,7 +19,7 @@
                     <div
                         class="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center"
                     >
-                        <div class="pr-12">
+                        <div>
                             <x-jet-application-mark class="ml-auto mr-auto w-64 h-64 text-white"/>
                             <h1 class="text-white font-semibold text-5xl">
                                 Got something that's busted?<br/>
