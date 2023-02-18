@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// logged in users:
 
 Route::middleware([
     'auth:sanctum',
@@ -25,4 +29,17 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+// admins:
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'isAdmin'
+])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin');
+    })->name('admin');
 });
