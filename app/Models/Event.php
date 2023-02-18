@@ -10,13 +10,16 @@ class Event extends Model
     use HasFactory;
 
     /**
-     * Get the venue hosting this event
+     * The venue hosting this event
      */
     public function venue()
     {
         return $this->belongsTo(Venue::class);
     }
 
+    /**
+     * The user this item belongs to, if set.
+     */
     public function users()
     {
         return $this->belongsToMany(User::class);
