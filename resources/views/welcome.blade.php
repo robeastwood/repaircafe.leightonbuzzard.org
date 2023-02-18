@@ -26,7 +26,7 @@
                                 Don't bin it, repair it!
                             </h1>
                             <p class="mt-4 text-lg text-gray-300">
-                                Have you got small household items that need some tender loving care (TLC) and you haven’t got the time or skills to fix them yourself? Don’t bin them, bring them to the Repair Café Leighton Buzzard and let our volunteer fixers try to mend them or give advice.
+                                Have you got small household items that need some tender loving care (TLC) and you haven't got the time or skills to fix them yourself? Don't bin them, bring them to the Repair Café Leighton Buzzard and let our volunteer fixers try to mend them or give advice.
                             </p>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-wrap items-center mt-10">
+                <div class="flex flex-wrap mt-10">
                     <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
                         <div
                             class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600"
@@ -150,7 +150,7 @@
                     </div>
                     <div class="w-full md:w-7/12 px-4 mr-auto ml-auto">
                         <p class="text-2xl text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            <a href="https://totallylocallyleightonbuzzard.wordpress.com/">Totally Locally Leighton Buzzard</a> are planning to host monthly Repair Café events in our town.
+                            <a href="https://totallylocallyleightonbuzzard.wordpress.com/">Totally Locally Leighton Buzzard</a> are planning to host monthly Repair Café events in our town. We bring the cake! You bring your items! Everyone brings a willingness to share and learn!
                         </p>
                         <h3 class="text-3xl mt-4 mb-2 font-semibold leading-normal">
                             Why are we organising a Repair Café?
@@ -164,15 +164,67 @@
                         <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
                             We welcome small household items and appliances that you can bring to our events. These for example include:
                         </p>
-                        <ul class="list-disc ml-10 text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            <li>Textiles and clothing repairs</li>
-                            <li>Household electrical and mechanical items such as: clocks, toasters, blenders, kettles, lamps, sewing machines, coffee machines, etc</li>
-                            <li>Electronics such as: headphones, CD/DVD Players</li>
-                            <li>Computers; desktops and laptops</li>
-                        </ul>
-                        <p class="text-lg text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            We do not accept large white good appliances, microwaves, televisions or mobile phones.<br/>
-                            We also do not accept bicycles, however the Buzz Cycles group runs existing regular Dr Bike repair sessions. Find out more here: https://www.facebook.com/Leightonbuzzcycles
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+                                <i class="fas fa-check"></i>
+                                Textiles and clothing repairs
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">Textiles and clothing repairs, upholstery and similar</p>
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+                                <i class="fas fa-check"></i>
+                                Household electrical and mechanical
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">Items such as clocks, toasters, blenders, kettles, lamps, sewing machines, coffee machines, fans etc</p>
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+                                <i class="fas fa-check"></i>
+                                Electronics
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">Electronics such as headphones, CD/DVD Players, hi-fi systems, portable entertainment, cameras, childrens toys, etc</p>
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+                                <i class="fas fa-check"></i>
+                                Computers
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">Desktops and laptops; Windows or Mac. (Printers - best effort only)</p>
+
+                        <h3 class="text-xl mt-4 mb-2 font-semibold leading-normal">
+                            Things we can't help with at the moment:
+                        </h3>
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3">
+                                <i class="fas fa-times"></i>
+                                Large White Goods
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">Washing machines, dishwashers, microwaves etc. These are too big and bulky to bring in.</p>
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3">
+                                <i class="fas fa-times"></i>
+                                Mobile phones & TVs
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">We're not set up for reparing screens of any sort.</p>
+
+                        <div class="flex items-center">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 mr-3">
+                                <i class="fas fa-times"></i>
+                                Bicycles
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-3">We can't accept bicycles for now, however the Buzz Cycles group runs existing regular <i>Dr Bike</i> repair sessions.
+                            Find out more <a href="https://www.facebook.com/Leightonbuzzcycles">here</a>
                         </p>
                     </div>
                 </div>
@@ -200,7 +252,7 @@
             </div>
             <div class="container mx-auto px-4">
                 <div class="items-center flex flex-wrap">
-                    <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+                    <div class="w-full md:w-8/12 ml-auto mr-auto px-4">
                         <div class="md:pr-12">
                             <div
                                 class="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300"
@@ -210,62 +262,102 @@
                             <h3 class="text-3xl font-semibold">
                                 FAQ
                             </h3>
-                            <p
-                                class="mt-4 text-lg leading-relaxed text-gray-600"
-                            >
-                                The extension comes with three pre-built pages
-                                to help you get started faster. You can change
-                                the text and images and you're good to go.
-                            </p>
                             <ul class="list-none mt-6">
                                 <li class="py-2">
                                     <div class="flex items-center">
                                         <div>
-                                            <span
-                                                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"
-                                                ><i
-                                                    class="fas fa-question"
-                                                ></i
-                                            ></span>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                                                <i class="fas fa-question"></i>
+                                            </span>
                                         </div>
                                         <div>
-                                            <h4 class="text-gray-600">
+                                            <h4 class="text-xl text-gray-600">
+                                                What is the cost of attending the Repair Café?
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        Attendance to the repair café is free, but we would gladly accept donations towards our costs. We are a non-profit community group, and Repair Cafés
+                                        work on the basis of donations which are welcome to cover the cost of venue hire, insurance costs, training and general supplies and tools.
+                                        </p>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        You will be expected to cover the cost of any parts needed (if required) to complete a repair of your item. In this case, the repairer will attmept to provide you
+                                        with the exact part numbers, approximate costs, and suitable suppliers.
+                                    </p>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        Once you have purchased the part(s), you're welcome to return to another repair
+                                        café session with the item and the part so your repair can be completed.
+                                    </p>
+                                </li>
+                                <li class="py-2">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                                                <i class="fas fa-question"></i>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-xl text-gray-600">
                                                 How can I book to attend the Repair Café?
                                             </h4>
                                         </div>
                                     </div>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        It is really helpful for our repairers to have some idea of the nature and condition of the item. Please provide as much information
+                                        as possible about what the item is and what might be wrong with the item. We will try to have a combination of both pre-booked and
+                                        walk-in slots.
+                                    </p>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        Please <a href="{{ route('register') }}">register here</a> and put your name down to attend one of the upcoming events.
+                                    </p>
                                 </li>
                                 <li class="py-2">
                                     <div class="flex items-center">
                                         <div>
-                                            <span
-                                                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"
-                                                ><i class="fab fa-html5"></i
-                                            ></span>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                                                <i class="fas fa-question"></i>
+                                            </span>
                                         </div>
                                         <div>
-                                            <h4 class="text-gray-600">
-                                                Amazing page examples
+                                            <h4 class="text-xl text-gray-600">
+                                                How does it work on the day?
                                             </h4>
                                         </div>
                                     </div>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        Depending on the time that you attend and the number of volunteer repairers available at that time, there could be a short wait before a relevant
+                                        repairer is available. Please use this opportunity to buy a drink or some cake and have a chat with others.</p>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        You will also be required to sign a disclaimer if you have not already done so online.
+                                    </p>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        When a relevant repairer is available, you are encouraged to sit with them, watch the repair and ask questions
+                                        (and even assist, if you can). Repair Cafés are essentially about sharing skills and knowledge.
+                                    </p>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        If your item is not repairable, the repairer will explain the reasons and offer info on the safest and easiest way to dispose of the item.<br/>
+                                        We cannot dispose of items that are unrepairable although we might be able to use some items for small parts in future repairs (but this might happen
+                                        on case by case basis).
+                                    </p>
                                 </li>
                                 <li class="py-2">
                                     <div class="flex items-center">
                                         <div>
-                                            <span
-                                                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"
-                                                ><i
-                                                    class="far fa-paper-plane"
-                                                ></i
-                                            ></span>
+                                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
+                                                <i class="fas fa-question"></i>
+                                            </span>
                                         </div>
                                         <div>
-                                            <h4 class="text-gray-600">
-                                                Dynamic components
+                                            <h4 class="text-xl text-gray-600">
+                                                Who are our repairers and can I become a volunteer?
                                             </h4>
                                         </div>
                                     </div>
+                                    <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                                        Repair Café Leighton Buzzard volunteers are mixture of people who want to help. Most are amateurs and others have professional repair expertise,
+                                        while others provide equally welcome support skills front of house.<br/>Please speak to one of the team if you are interested in volunteering either
+                                        as a fixer or doing admin/front of house activities. Every little helps!
+                                    </p>
                                 </li>
                             </ul>
                         </div>
@@ -280,6 +372,7 @@
                 </div>
             </div>
         </section>
+        <!--
         <section class="pt-20 pb-48">
             <div class="container mx-auto px-4">
                 <div class="flex flex-wrap justify-center text-center mb-24">
@@ -594,4 +687,5 @@
                 </div>
             </div>
         </section>
+        -->
 </x-guest-layout>

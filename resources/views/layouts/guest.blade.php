@@ -31,11 +31,13 @@
                     <div
                         class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
                     >
-                        <a
-                            class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                        <!-- <a
+                            class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-grey-800"
                             href="/"
-                            >{{ config("app.name", "Laravel") }}</a
-                        ><button
+                        >
+                            Home
+                        </a> -->
+                        <button
                             class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                             type="button"
                             onclick="toggleNavbar('example-collapse-navbar')"
@@ -50,30 +52,24 @@
                         <ul class="flex flex-col lg:flex-row list-none mr-auto">
                             <li class="flex items-center">
                                 <a
-                                    class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                                    href="/policies"
-                                    ><i
-                                        class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
-                                    ></i>
-                                    Policies</a
-                                >
+                                    class="hover:text-gray-300 text-gray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                                    href="/"
+                                    ><i class="fas fa-house text-lg leading-lg mr-2"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li class="flex items-center">
+                                <a
+                                    class="hover:text-gray-300 text-gray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                                    href="/"
+                                    ><i class="fas fa-calendar text-lg leading-lg mr-2"></i>
+                                    Event Diary
+                                </a>
                             </li>
                         </ul>
                         <ul
                             class="flex flex-col lg:flex-row list-none lg:ml-auto"
                         >
-                            <li class="flex items-center">
-                                <a
-                                    class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                                    href="#pablo"
-                                    ><i
-                                        class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg"
-                                    ></i
-                                    ><span class="lg:hidden inline-block ml-2"
-                                        >FAQ</span
-                                    ></a
-                                >
-                            </li>
                             @auth
                             <li class="flex items-center">
                                 <a
@@ -114,7 +110,7 @@
                     </div>
                 </div>
             </nav>
-            <main class="">
+            <main>
                 {{ $slot }}
             </main>
             <footer class="relative bg-gray-300 pt-8 pb-6">
@@ -146,29 +142,21 @@
                                 Find us on social media.
                             </h5>
                             <div class="mt-6">
-                                <button
-                                    class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                                    type="button"
-                                >
-                                    <i class="flex fab fa-twitter"></i></button
-                                ><button
-                                    class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                                    type="button"
-                                >
-                                    <i
-                                        class="flex fab fa-facebook-square"
-                                    ></i></button
-                                ><button
-                                    class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                                    type="button"
-                                >
-                                    <i class="flex fab fa-dribbble"></i></button
-                                ><button
-                                    class="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                                    type="button"
-                                >
-                                    <i class="flex fab fa-github"></i>
-                                </button>
+                                <a href="https://www.facebook.com/groups/repaircafelb">
+                                    <button
+                                        class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                                        type="button" >
+                                        <i class="flex fab fa-twitter"></i>
+                                    </button>
+                                </a>
+
+                                <a href="https://www.facebook.com/groups/repaircafelb">
+                                    <button
+                                        class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                                        type="button" >
+                                        <i class="flex fab fa-facebook"></i>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <div class="w-full lg:w-6/12 px-4">
@@ -176,71 +164,71 @@
                                 <div class="w-full lg:w-4/12 px-4 ml-auto">
                                     <span
                                         class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-                                        >Useful Links</span
+                                        >Find out more</span
                                     >
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a
-                                                class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://www.creative-tim.com/presentation"
-                                                >About Us</a
+                                            <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                                href="#"
                                             >
+                                                About Us
+                                            </a>
                                         </li>
                                         <li>
-                                            <a
-                                                class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://blog.creative-tim.com"
-                                                >Blog</a
+                                            <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                                href="#"
                                             >
+                                                Privacy Policy
+                                            </a>
                                         </li>
                                         <li>
-                                            <a
-                                                class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://www.github.com/creativetimofficial"
-                                                >Github</a
+                                            <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                                href="#"
                                             >
+                                                Volunteer Policy
+                                            </a>
                                         </li>
                                         <li>
-                                            <a
-                                                class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://www.creative-tim.com/bootstrap-themes/free"
-                                                >Free Products</a
+                                            <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                                href="#"
                                             >
+                                                Repair Disclaimer
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                                href="#"
+                                            >
+                                                Contact Us
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="w-full lg:w-4/12 px-4">
                                     <span
                                         class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-                                        >Other Resources</span
+                                        >Helpful Links</span
                                     >
                                     <ul class="list-unstyled">
                                         <li>
+                                            <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                                href="https://totallylocallyleightonbuzzard.wordpress.com"
+                                            >
+                                                Totally Locally LB
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a
                                                 class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
-                                                >MIT License</a
+                                                href="https://www.repaircafe.org/en/"
+                                                >Repair Cafe movement</a
                                             >
                                         </li>
                                         <li>
                                             <a
                                                 class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://creative-tim.com/terms"
-                                                >Terms &amp; Conditions</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://creative-tim.com/privacy"
-                                                >Privacy Policy</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="https://creative-tim.com/contact-us"
-                                                >Contact Us</a
+                                                href="https://restarters.net/group/view/821"
+                                                >Restarters group</a
                                             >
                                         </li>
                                     </ul>
