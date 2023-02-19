@@ -26,7 +26,7 @@
                     <div class="p-6">
                         <div class="flex items-center">
                             <i class="text-gray-500 text-3xl far fa-calendar-days"></i>
-                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="#">Events</a></div>
+                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="{{ route('events') }}">Events</a></div>
                         </div>
 
                         <div class="ml-12">
@@ -34,7 +34,7 @@
                                 Repair Cafe events that you can attend, either with broken items or to help with repairs
                             </div>
 
-                            <a href="#">
+                            <a href="{{ route('events') }}">
                                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                                     <div>View the diary</div>
                                     <div class="ml-1 text-indigo-500">
