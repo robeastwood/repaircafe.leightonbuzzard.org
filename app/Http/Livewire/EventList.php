@@ -9,15 +9,19 @@ use Livewire\Component;
 class EventList extends Component
 {
 
-    public $futureEvents, $skillList;
+    public $futureEvents;
 
 
     public function render()
     {
         // get future events
-        $this->futureEvents = Event::where('starts_at', '>', Carbon::now())->with('venue')->orderBy('starts_at', 'ASC')->get();
+        $this->futureEvents = Event::where('starts_at', '>', Carbon::now())
+            ->with('venue')
+            ->with('users')
+            ->withCount('items')
+            ->orderBy('starts_at', 'ASC')
+            ->get();
 
-        // get skills at this
         return view('livewire.event-list');
     }
 }

@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('event_user', function (Blueprint $table) {
+        Schema::create('event_item', function (Blueprint $table) {
             $table->foreignId('event_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->boolean('volunteer')->nullable();
-        });
-        Schema::create('skill_user', function (Blueprint $table) {
-            $table->foreignId('skill_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('item_id')->constrained();
+            $table->foreignId('repairer_id')->nullable()->constrained('users');
+            $table->string('outcome')->nullable();
+            $table->text('notes')->nullable();
         });
     }
 
@@ -31,7 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_user');
-        Schema::dropIfExists('skill_user');
+        Schema::dropIfExists('event_item');
     }
 };

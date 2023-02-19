@@ -28,9 +28,8 @@ class UserSeeder extends Seeder
         // create 100 guests
         User::factory(100)->create();
 
-        // create 50 volunteers each with 5 random skills
-        $volunteers = User::factory(50)
-            ->create();
+        // create 50 users with 5 random skills
+        $volunteers = User::factory(50)->create();
         foreach ($volunteers as $volunteer) {
             $skills = Skill::inRandomOrder()->limit(5)->get();
             $volunteer->skills()->sync($skills);

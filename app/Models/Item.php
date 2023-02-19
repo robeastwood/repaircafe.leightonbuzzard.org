@@ -24,4 +24,12 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * the events this item is booked into
+     */
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
 }

@@ -15,8 +15,10 @@ class ItemSeeder extends Seeder
      */
     public function run()
     {
-        Item::factory(200)->create();
+        // create some owned items
+        Item::factory(20)->create();
         // create some annonymously owned items
-        Item::factory(100)->annon()->create();
+        Item::factory(10)->annon()->create();
+
     }
 }

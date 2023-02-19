@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="519" y="114" name="users">
+</datatypes><table x="518" y="114" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -53,14 +53,14 @@
 <row name="profile" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
-<row name="roles" null="1" autoincrement="0">
+<row name="volunteer" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1072" y="99" name="events">
+<table x="1068" y="97" name="events">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="event_item" row="event_id" />
@@ -79,7 +79,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="686" y="379" name="items">
+<table x="692" y="370" name="items">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -111,7 +111,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="883" y="311" name="event_item">
+<table x="890" y="309" name="event_item">
 <row name="event_id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -123,6 +123,9 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="items" row="id" />
 </row>
+<row name="outcome" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <row name="notes" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
