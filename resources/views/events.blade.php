@@ -5,7 +5,7 @@
                 <div class="flex items-center">
                     <i class="text-gray-800 text-3xl far fa-calendar-days mr-4"></i>
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        {{ __("Event Diary") }}
+                        {{ __('Event Diary') }}
                     </h2>
                 </div>
             </div>

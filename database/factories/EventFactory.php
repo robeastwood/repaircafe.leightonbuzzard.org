@@ -24,14 +24,13 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-
         $starts_at = fake()->dateTimeThisYear(Carbon::now()->addMonth());
         $ends_at = Carbon::parse($starts_at)->addHours(rand(1, 8));
 
         return [
-            'starts_at' => $starts_at,
-            'ends_at' => $ends_at,
-            'venue_id' => Venue::all()->random()->id
+            "starts_at" => $starts_at,
+            "ends_at" => $ends_at,
+            "venue_id" => Venue::all()->random()->id,
         ];
     }
 }

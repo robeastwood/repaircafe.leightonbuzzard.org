@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class UpdateRepaircafeUserSettingsForm extends Component
 {
-
     public bool $volunteer;
 
     /**
@@ -33,9 +32,8 @@ class UpdateRepaircafeUserSettingsForm extends Component
         $user->save();
     }
 
-
     public function render()
     {
-        return view('livewire.update-repaircafe-user-settings-form');
+        return view("livewire.update-repaircafe-user-settings-form");
     }
 }

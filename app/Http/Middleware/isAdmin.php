@@ -17,9 +17,12 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->is_admin == true){
+        if (Auth::user() && Auth::user()->is_admin == true) {
             return $next($request);
         }
-        return back()->with('error', 'Only administrators can access this resource');
+        return back()->with(
+            "error",
+            "Only administrators can access this resource"
+        );
     }
 }

@@ -18,7 +18,8 @@ class ItemSeeder extends Seeder
         // create some owned items
         Item::factory(20)->create();
         // create some annonymously owned items
-        Item::factory(10)->annon()->create();
-
+        Item::factory(10)
+            ->annon()
+            ->create();
     }
 }

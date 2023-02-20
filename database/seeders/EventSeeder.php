@@ -22,17 +22,21 @@ class EventSeeder extends Seeder
 
         // add some users to each event, some volunteering
         foreach ($events as $event) {
-            $users = User::inRandomOrder()->limit(rand(5, 100))->get();
-            foreach($users as $user){
-                $event->users()->attach($user,[
-                    'volunteer' => rand(0,1)
+            $users = User::inRandomOrder()
+                ->limit(rand(5, 100))
+                ->get();
+            foreach ($users as $user) {
+                $event->users()->attach($user, [
+                    "volunteer" => rand(0, 1),
                 ]);
             }
         }
 
         // add some items to each event
         foreach ($events as $event) {
-            $items = Item::inRandomOrder()->limit(rand(5, 100))->get();
+            $items = Item::inRandomOrder()
+                ->limit(rand(5, 100))
+                ->get();
             $event->items()->attach($items);
         }
     }

@@ -22,8 +22,7 @@ class Event extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class)
-            ->withPivot('volunteer');
+        return $this->belongsToMany(User::class)->withPivot("volunteer");
     }
 
     /**
@@ -32,9 +31,9 @@ class Event extends Model
     public function items()
     {
         return $this->belongsToMany(Item::class)
-            ->withPivot('repairer_id')
-            ->withPivot('outcome')
-            ->withPivot('notes');
+            ->withPivot("repairer_id")
+            ->withPivot("outcome")
+            ->withPivot("notes");
     }
 
     /**
@@ -42,9 +41,12 @@ class Event extends Model
      */
     public function skills()
     {
-        $volunteers = $this->users()->wherePivot('volunteer', true)->with('skills')->get();
-        $skills = Skill::whereHas('users', function ($query) use ($volunteers) {
-            $query->whereIn('id', $volunteers->pluck('id'));
+        $volunteers = $this->users()
+            ->wherePivot("volunteer", true)
+            ->with("skills")
+            ->get();
+        $skills = Skill::whereHas("users", function ($query) use ($volunteers) {
+            $query->whereIn("id", $volunteers->pluck("id"));
         })->get();
         return $skills;
     }

@@ -16,12 +16,13 @@ class VenueSeeder extends Seeder
     public function run()
     {
         Venue::create([
-            'name' => "The Conservative Club",
-            'description' => "Leighton Buzzard Conservative club, on the high street"
+            "name" => "The Conservative Club",
+            "description" =>
+                "Leighton Buzzard Conservative club, on the high street",
         ]);
         Venue::create([
-            'name' => "Pages Park pavillion",
-            'description' => "The pavillion in Pages Park"
+            "name" => "Pages Park pavillion",
+            "description" => "The pavillion in Pages Park",
         ]);
     }
 }
