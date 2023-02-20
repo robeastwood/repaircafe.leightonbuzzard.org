@@ -71,7 +71,8 @@
                                     Save Money
                                 </h6>
                                 <p class="mt-2 mb-4 text-gray-600">
-                                    We're all looking for ways to save money these days. Many household items are replaced unnecessarily because of a minor issue that could be easily repaired for free, or for a fraction of the cost of a replacement.
+                                    We're all looking for ways to save money these days. Many household items are replaced unnecessarily because of a minor issue that could be
+                                    easily repaired for free, or for a fraction of the cost of a replacement.
                                 </p>
                             </div>
                         </div>
@@ -90,7 +91,9 @@
                                     Reduce Waste
                                 </h6>
                                 <p class="mt-2 mb-4 text-gray-600">
-                                    Stats about reducing the amount of waste going to landfill.
+                                    It is estimated that on average an item of clothing lasts 3.3 years and around 300,000
+                                    tonnes a year are sent to landfill in the UK, and on average we each throw away 23.9kg of Electronic waste (or e-waste) per year. The UK is set to become the world's
+                                    largest e-waste producer by 2024. We should do all we can to limit the effects of our throwaway society.
                                 </p>
                             </div>
                         </div>
@@ -150,7 +153,7 @@
                     </div>
                     <div class="w-full md:w-7/12 px-4 mr-auto ml-auto">
                         <p class="text-2xl text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                            <a href="https://totallylocallyleightonbuzzard.wordpress.com/">Totally Locally Leighton Buzzard</a> are planning to host monthly Repair Café events in our town. We bring the cake! You bring your items! Everyone brings a willingness to share and learn!
+                            <a href="https://totallylocallyleightonbuzzard.wordpress.com/">Totally Leighton Buzzard</a> are planning to host monthly Repair Café events in our town. We bring the cake! You bring your items! Everyone brings a willingness to share and learn!
                         </p>
                         <h3 class="text-3xl mt-4 mb-2 font-semibold leading-normal">
                             Why are we organising a Repair Café?
