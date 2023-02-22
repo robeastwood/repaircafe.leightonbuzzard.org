@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,33 +16,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/", function () {
+    $nextEvent = Event::where("ends_at", ">=", Carbon::now())
+        ->orderBy("starts_at")
+        ->first();
+    return view("welcome", ["nextEvent" => $nextEvent]);
 });
 
-
 // logged in users:
-
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+    "auth:sanctum",
+    config("jetstream.auth_session"),
+    "verified",
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get("/dashboard", function () {
+        return view("dashboard");
+    })->name("dashboard");
+    Route::get("/events", function () {
+        return view("events");
+    })->name("events");
 });
 
 // admins:
-
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-    'isAdmin'
+    "auth:sanctum",
+    config("jetstream.auth_session"),
+    "verified",
+    "isAdmin",
 ])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin');
-    })->name('admin');
+    Route::get("/admin", function () {
+        return view("admin");
+    })->name("admin");
 });

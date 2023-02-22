@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +16,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(20)->create();
+        // create an admin
+        User::factory()
+            ->isAdmin()
+            ->create([
+                "name" => "Test User",
+                "email" => "test@test.com",
+            ]);
+        // create 100 guests
+        User::factory(100)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // create 50 users with 5 random skills
+        $volunteers = User::factory(50)->create();
+        foreach ($volunteers as $volunteer) {
+            $skills = Skill::inRandomOrder()
+                ->limit(5)
+                ->get();
+            $volunteer->skills()->sync($skills);
+        }
     }
 }
