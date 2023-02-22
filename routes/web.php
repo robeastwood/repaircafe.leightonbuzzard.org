@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", function () {
-    return view("welcome");
+    $nextEvent = Event::where("ends_at", ">=", Carbon::now())
+        ->orderBy("starts_at")
+        ->first();
+    return view("welcome", ["nextEvent" => $nextEvent]);
 });
 
 // logged in users:

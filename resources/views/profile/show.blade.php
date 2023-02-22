@@ -14,7 +14,7 @@
             @endif
 
             <div class="mt-10 sm:mt-0">
-                @livewire('update-repaircafe-user-settings-form')
+                @livewire('update-volunteer-form')
             </div>
             <x-jet-section-border />
 
