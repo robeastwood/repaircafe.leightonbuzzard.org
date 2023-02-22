@@ -18,10 +18,7 @@ Route::get("/", function () {
     return view("welcome");
 });
 
-Route::get("/test", "App\Http\Controllers\VenueController@test");
-
 // logged in users:
-
 Route::middleware([
     "auth:sanctum",
     config("jetstream.auth_session"),
