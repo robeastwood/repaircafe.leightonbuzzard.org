@@ -13,6 +13,7 @@ class UpdateVolunteerForm extends Component
     public $volunteer;
     public $allSkills = [];
     public $userSkills = [];
+    public $newSkill;
 
     protected $rules = [
         "userSkills" => "",
@@ -29,8 +30,6 @@ class UpdateVolunteerForm extends Component
         $this->allSkills = Skill::all();
         $this->volunteer = $user->volunteer;
         $this->userSkills = $user->skills->pluck("id")->toArray();
-
-        //dd($this->userSkills);
     }
 
     /**
@@ -40,14 +39,23 @@ class UpdateVolunteerForm extends Component
      */
     public function updateVolunteer()
     {
-        //dd($this->user->skills);
-        // $this->user->volunteer = $this->volunteer;
-
         $user = Auth::user();
-        // $newSkills = $this->userSkills;
         $user->volunteer = $this->volunteer;
         $user->skills()->sync($this->userSkills);
         $user->save();
+        $this->emit('saved');
+    }
+
+    public function addSkill()
+    {
+        $newskill = Skill::create([
+            "name" => $this->newSkill,
+            "description" =>
+                $this->newSkill . " (Added by: " . Auth::user()->name . ")",
+        ]);
+        $this->allSkills->push($newskill);
+        $this->userSkills[] = $newskill->id;
+        $this->newSkill = "";
     }
 
     public function render()

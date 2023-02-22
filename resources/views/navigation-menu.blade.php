@@ -117,15 +117,15 @@
                         <x-slot name="content">
 
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Your details:') }}
+                                {{ __('Manage your:') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('My Bookings') }}
+                                {{ __('Bookings') }}
                             </x-jet-dropdown-link>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('My Items') }}
+                                {{ __('Items') }}
                             </x-jet-dropdown-link>
 
                             <!-- Account Management -->
@@ -135,10 +135,6 @@
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('My Profile') }}
-                            </x-jet-dropdown-link>
-
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('My Skills') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
