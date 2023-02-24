@@ -13,11 +13,11 @@ class EventList extends Component
     public function render()
     {
         // get future events
-        $this->futureEvents = Event::where("starts_at", ">", Carbon::now())
+        $this->futureEvents = Event::where("ends_at", ">", Carbon::now())
             ->with("venue")
             ->with("users")
             ->withCount("items")
-            ->orderBy("starts_at", "ASC")
+            ->orderBy("ends_at")
             ->get();
 
         return view("livewire.event-list");

@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
     $nextEvent = Event::where("ends_at", ">=", Carbon::now())
-        ->orderBy("starts_at")
+        ->with("venue")
+        ->with("users")
+        ->withCount("items")
+        ->orderBy("ends_at")
         ->first();
     return view("welcome", ["nextEvent" => $nextEvent]);
 });

@@ -23,48 +23,14 @@
                     </div>
 
                     @if ($nextEvent)
-                        <div class="max-w-lg mt-4 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800 mx-auto">
-                            <div>
-                                <h2
-                                    class="text-gray-600 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 mb-1">
-                                    Our next Repair Cafe event is:
-                                </h2>
-                                <h2
-                                    class="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
-                                    {{ Carbon\Carbon::parse($nextEvent->starts_at)->format('l jS \\of F') }}
-                                </h2>
-                                <h3 class="font-semibold text-gray-800 dark:text-white mt-2">
-                                    {{ Carbon\Carbon::parse($nextEvent->starts_at)->format('g:i A') }}
-                                    -
-                                    {{ Carbon\Carbon::parse($nextEvent->ends_at)->format('g:i A') }}
-                                    at {{ $nextEvent->venue->name }}
-                                </h3>
-                                {{-- <p class="mt-2 text-gray-600 dark:text-gray-300">
-                                <div class="uppercase tracking-wide text-sm text-teal-500 font-semibold">
-                                    Volunteers attending:
-                                    <strong>{{ count($nextEvent->users()->wherePivot('volunteer', true)->get()) }}</strong>
-                                </div>
-                                Skills available:
-                                {{ $nextEvent->skills()->pluck('name')->implode(', ') }}
-                                <div class="mt-2 uppercase tracking-wide text-sm text-yellow-500 font-semibold">
-                                    Guests attending:
-                                    <strong>{{ count($nextEvent->users()->wherePivot('volunteer', false)->get()) }}</strong>
-                                </div>
-                                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                                    Items booked in: <strong>{{ count($nextEvent->items) }}</strong>
-                                </div>
-                            </p> --}}
-
-                            </div>
-
-                            {{-- <div class="mt-4">
-                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline" tabindex="0"
-                                role="link">More details</a>
-                                |
-                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline" tabindex="0"
-                                role="link">Register to attend</a>
-                        </div> --}}
-                        </div>
+                        <h2 class="text-xl text-gray-100 dark:text-white my-2">
+                            Our next Repair Cafe event is:
+                        </h2>
+                        <livewire:event-card :event="$nextEvent">
+                        @else
+                            <h2 class="text-xl text-gray-100 dark:text-white my-2">
+                                Check back soon for details of the next event!
+                            </h2>
                     @endif
 
                 </div>
