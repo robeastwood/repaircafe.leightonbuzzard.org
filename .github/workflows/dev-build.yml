@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout develop
         uses: actions/checkout@master
 
       - name: Install dependencies
@@ -19,19 +19,19 @@ jobs:
       - name: Build assets with Vite
         run: npm run build
 
-      - name: Checkout target branch
+      - name: Checkout staging
         uses: actions/checkout@master
         with:
           ref: 'staging'
 
-      - name: Merge changes
+      - name: Commit changes
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git merge --no-ff -m "Merge build assets to staging" staging
+          git commit -a -m "Merge build assets to staging" staging
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'staging'
+          branch: ${{ github.ref }}
