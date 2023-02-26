@@ -9,21 +9,17 @@ jobs:
   compile-assets:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
-      - name: Merge development -> staging
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: development
-          target_branch: staging
-          github_token: ${{ github.token }}
-          
       - name: Checkout Staging
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
         with:
           branch: staging
 
+      - name: Merge develop into staging
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git merge --no-ff -m "Merge changes to staging" develop          
+          
       - name: Install dependencies
         run: npm install
 
