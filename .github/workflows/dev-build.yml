@@ -8,29 +8,22 @@ on:
 jobs:
   build_and_merge:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout develop
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install
 
       - name: Build assets with Vite
         run: npm run build
-
-      - name: Checkout target branch
-        uses: actions/checkout@v2
+        
+      - name: Commit assets to staging
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          ref: 'staging'
-
-      - name: Merge changes
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git merge --no-ff -m "Merge main branch" main
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Add build assets
+          branch: staging
