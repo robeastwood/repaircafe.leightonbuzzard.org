@@ -9,7 +9,10 @@ jobs:
   compile-assets:
     runs-on: ubuntu-latest
     steps:
-      - name: Update develop
+      - name: Checkout develop
+        uses: actions/checkout@master
+        
+      - name: Fetch
         run: git fetch
         
       - name: Checkout Staging
