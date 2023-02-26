@@ -1,0 +1,36 @@
+name: Compile Assets on develop and merge to staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build_and_merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build assets with Vite
+        run: npm run build
+
+      - name: Checkout target branch
+        uses: actions/checkout@v2
+        with:
+          ref: 'staging'
+
+      - name: Merge changes
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git merge --no-ff -m "Merge main branch" main
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
