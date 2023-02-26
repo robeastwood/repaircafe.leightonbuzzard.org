@@ -11,26 +11,28 @@ jobs:
     steps:
       - name: Checkout develop
         uses: actions/checkout@master
-        
+
       - name: Checkout staging
         uses: actions/checkout@master
         with:
           ref: staging
-        
+
       - name: Merge develop into staging
         run: |
+          git status
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git merge develop --no-ff -m "Merge develop into staging"
-          
+          git merge origin/develop --no-ff -m "Merge develop into staging"
+          git status
+
       - name: Install dependencies
         run: npm install
 
       - name: Build assets with Vite
         run: npm run build
-        
+
       - name: Commit assets
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Add build assets
-          branch: staging          
+          branch: staging
