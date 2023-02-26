@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git commit -a -m "Merge build assets to staging" staging
+          git commit -a -m "Merge build assets to staging"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
