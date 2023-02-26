@@ -116,22 +116,13 @@
 
                         <x-slot name="content">
 
-                            <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{-- <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage your:') }}
-                            </div>
+                            </div> --}}
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Bookings') }}
+                                {{ __('My Items') }}
                             </x-jet-dropdown-link>
-
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Items') }}
-                            </x-jet-dropdown-link>
-
-                            <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Profile') }}
-                            </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('My Profile') }}

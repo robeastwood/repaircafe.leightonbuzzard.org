@@ -9,6 +9,7 @@ class AttendingButton extends Component
 {
     public $event;
     public $status;
+    public $user;
 
     /**
      * Prepare the component.
@@ -17,7 +18,12 @@ class AttendingButton extends Component
      */
     public function mount()
     {
-        $user = Auth::user();
+        $this->user = Auth::user();
+
+        if (!$this->user) {
+            $this->status = "nouser";
+            return;
+        }
 
         $this->status = "notattending"; // not attending by default
 
@@ -26,10 +32,10 @@ class AttendingButton extends Component
                 ->users()
                 ->wherePivot("volunteer", true)
                 ->get()
-                ->contains($user)
+                ->contains($this->user)
         ) {
             $this->status = "volunteering";
-        } elseif ($this->event->users->contains($user)) {
+        } elseif ($this->event->users->contains($this->user)) {
             $this->status = "attending";
         }
     }
@@ -44,13 +50,16 @@ class AttendingButton extends Component
         switch ($status) {
             case "attending":
                 $this->event->users()->syncWithoutDetaching([
-                    Auth::id() => ["volunteer" => false],
+                    $this->user->id => ["volunteer" => false],
                 ]);
                 $this->status = "attending";
                 break;
             case "volunteering":
+                if (!$this->user->volunteer) {
+                    abort("400", "You are not a volunteer");
+                }
                 $this->event->users()->syncWithoutDetaching([
-                    Auth::id() => ["volunteer" => true],
+                    $this->user->id => ["volunteer" => true],
                 ]);
                 $this->status = "volunteering";
                 break;
@@ -59,6 +68,6 @@ class AttendingButton extends Component
                 $this->status = "notattending";
                 break;
         }
-        $this->emit('rsvp');
+        $this->emit("rsvp");
     }
 }

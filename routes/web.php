@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\AdminController;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,5 @@ Route::middleware([
     "verified",
     "isAdmin",
 ])->group(function () {
-    Route::get("/admin", function () {
-        return view("admin");
-    })->name("admin");
+    Route::get("/admin", [AdminController::class, "show"])->name("admin");
 });
