@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Staging
         uses: actions/checkout@master
         with:
-          branch: staging
+          ref: staging
 
       - name: Merge develop into staging
         run: |
