@@ -229,6 +229,7 @@
                                                             class="inline px-3 py-1 text-sm font-normal rounded-full text-green-500 gap-x-2 bg-green-100/60 dark:bg-green-800">
                                                             Volunteer
                                                         </div>
+                                                        <p class="mt-1 text-xs">{{ $user->skills->implode("name",", ") }}</p>
                                                     @else
                                                         <div
                                                             class="inline px-3 py-1 text-sm font-normal rounded-full text-gray-500 gap-x-2 bg-gray-100/60 dark:bg-gray-800">

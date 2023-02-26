@@ -23,11 +23,11 @@ class UserSeeder extends Seeder
                 "name" => "Test User",
                 "email" => "test@test.com",
             ]);
-        // create 100 guests
-        User::factory(100)->create();
+        // create guests
+        User::factory(20)->create();
 
-        // create 50 users with 5 random skills
-        $volunteers = User::factory(50)->create();
+        // create volunteers each with 5 random skills
+        $volunteers = User::factory(20)->isVolunteer()->create();
         foreach ($volunteers as $volunteer) {
             $skills = Skill::inRandomOrder()
                 ->limit(5)

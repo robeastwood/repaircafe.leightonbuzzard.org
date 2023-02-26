@@ -54,6 +54,19 @@ class UserFactory extends Factory
         });
     }
     /**
+     * Volunteer
+     *
+     * @return $this
+     */
+    public function isVolunteer(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                "volunteer" => true,
+            ];
+        });
+    }
+    /**
      * Indicate that the model's email address should be unverified.
      *
      * @return $this
