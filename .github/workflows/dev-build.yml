@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
 
       - name: Install dependencies
         run: npm install
@@ -20,7 +20,7 @@ jobs:
         run: npm run build
 
       - name: Checkout target branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
         with:
           ref: 'staging'
 
@@ -31,6 +31,6 @@ jobs:
           git merge --no-ff -m "Merge build assets to staging" staging
 
       - name: Push changes
-        uses: ad-m/github-push-action@staging
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
