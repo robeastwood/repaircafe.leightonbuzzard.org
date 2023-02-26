@@ -16,9 +16,11 @@ jobs:
 
       - name: Merge develop into staging
         run: |
+          git status
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git merge --no-ff -m "Merge changes to staging" develop          
+          git merge --no-ff -m "Merge changes to staging" develop
+          git status
           
       - name: Install dependencies
         run: npm install
@@ -30,3 +32,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Add build assets
+          branch: staging          
