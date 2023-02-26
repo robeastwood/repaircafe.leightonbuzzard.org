@@ -23,7 +23,7 @@ jobs:
         run: npm run build
         
       - name: Commit assets to staging
-      - uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Add build assets
           branch: staging
