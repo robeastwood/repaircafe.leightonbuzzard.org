@@ -39,34 +39,15 @@
 
             <div class="bg-white sm:rounded-xl shadow-md p-4 mb-4">
 
-                <div class="flex items-center">
+                <div class="flex items-top">
                     <div class="flex-1 text-left">
-                        <div class="flex items-center">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                                {{ count($event->users()->wherePivot('volunteer', true)->get()) }} Volunteers
-                                attending
-                            </h2>
-                        </div>
+                        @livewire('volunteers-and-skills', ['event' => $event])
                     </div>
                     <div class="flex-1 text-right">
-                        <button class="bg-green-300 hover:bg-green-400 text-green-800 font-bold py-2 px-4 rounded-full">
-                            <i class="far fa-circle-check mr-2"></i>
-                            <span>Volunteering</span>
-                        </button>
-                        <button class="bg-red-300 hover:bg-red-400 text-red-800 font-bold py-2 px-4 rounded-full">
-                            <i class="far fa-circle-xmark mr-2"></i>
-                            <span>Not Attending</span>
-                        </button>
-                        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full">
-                            <i class="far fa-circle-question mr-2"></i>
-                            <span>RSVP</span>
-                        </button>
+                        @livewire('attending-button', ['event' => $event])
                     </div>
                 </div>
 
-                <p>{{ $event->users()->wherePivot('volunteer', true)->implode('name', ', ') }}</p>
-                <h2 class="text-xl">Skills Available:</h2>
-                <p>{{ $event->skills()->pluck('name')->implode(', ') }}</p>
             </div>
 
             <div class="bg-white sm:rounded-xl shadow-md p-4 mb-4">
@@ -250,7 +231,7 @@
                                                     x-transition:leave-start="opacity-100 scale-100"
                                                     x-transition:leave-end="opacity-0 scale-90"
                                                     class="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
-                                                    <a href="{{ route('item',["id"=>$item->id]) }}"
+                                                    <a href="{{ route('item', ['id' => $item->id]) }}"
                                                         class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                                                         View Details</a>
                                                     <a href="#"
