@@ -42,8 +42,14 @@
         </div>
     </div>
     <div class="pt-4 mx-auto">
-        <a href="{{ route('event', $event->id) }}"
-            class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">View / Book
-            in an item to repair</a>
+        @if (Auth::user())
+            <a href="{{ route('event', $event->id) }}"
+                class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">Book in an item to repair
+            </a>
+        @else
+            <a href="{{ route('register') }}"
+                class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">Register to attend
+            </a>
+        @endif
     </div>
 </div>
