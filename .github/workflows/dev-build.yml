@@ -30,8 +30,12 @@ jobs:
 
       - name: Build assets with Vite
         run: npm run build
+        
+      - name: Commit changes
+        run: |
+          git commit -a -m "Commit changes"
 
-      - name: Commit assets
+      - name: Push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Add build assets
