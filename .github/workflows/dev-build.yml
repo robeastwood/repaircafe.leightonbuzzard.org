@@ -12,20 +12,14 @@ jobs:
       - name: Checkout develop
         uses: actions/checkout@master
         
-      - name: Fetch
-        run: git fetch
-        
-      - name: Checkout Staging
-        uses: actions/checkout@master
-        with:
-          ref: staging
-
       - name: Merge develop into staging
         run: |
           git status
           git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git merge origin/develop --no-ff -m "Merge changes to staging"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"          
+          git checkout staging
+          git status
+          git merge develop --no-ff -m "Merge develop into staging"
           git status
           
       - name: Install dependencies
