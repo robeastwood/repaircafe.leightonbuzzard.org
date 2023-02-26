@@ -25,7 +25,7 @@ jobs:
           git status
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git merge develop --no-ff -m "Merge changes to staging"
+          git merge origin/develop --no-ff -m "Merge changes to staging"
           git status
           
       - name: Install dependencies
