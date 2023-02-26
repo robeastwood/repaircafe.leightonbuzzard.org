@@ -9,6 +9,9 @@ jobs:
   compile-assets:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout develop
+        uses: actions/checkout@master        
+        
       - name: Checkout Staging
         uses: actions/checkout@master
         with:
