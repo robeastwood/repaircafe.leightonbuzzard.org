@@ -42,7 +42,8 @@
         </div>
     </div>
     <div class="pt-4 mx-auto">
-        <a href="/events/{{ $event->id }}" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">Book
+        <a href="{{ route('event', $event->id) }}"
+            class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded">View / Book
             in an item to repair</a>
     </div>
 </div>

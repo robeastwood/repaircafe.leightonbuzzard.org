@@ -23,12 +23,12 @@
                     </div>
 
                     @if ($nextEvent)
-                        <h2 class="text-xl text-gray-100 dark:text-white my-2">
+                        <h2 class="text-xl text-gray-300 my-2">
                             Our next Repair Cafe event is:
                         </h2>
                         <livewire:event-card :event="$nextEvent">
                         @else
-                            <h2 class="text-xl text-gray-100 dark:text-white my-2">
+                            <h2 class="text-xl text-gray-300 my-2">
                                 Check back soon for details of the next event!
                             </h2>
                     @endif

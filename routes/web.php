@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ItemController;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::get("/", function () {
         ->first();
     return view("welcome", ["nextEvent" => $nextEvent]);
 });
+Route::get("/events/{id}", "EventController@showEvent");
 
 // logged in users:
 Route::middleware([
@@ -35,9 +37,9 @@ Route::middleware([
     Route::get("/dashboard", function () {
         return view("dashboard");
     })->name("dashboard");
-    Route::get("/events", function () {
-        return view("events");
-    })->name("events");
+    Route::get("/events/{id}", [EventController::class, "show"])->name("event");
+    Route::get("/events", [EventController::class, "list"])->name("events");
+    Route::get("/items/{id}", [ItemController::class, "show"])->name("item");
 });
 
 // admins:
