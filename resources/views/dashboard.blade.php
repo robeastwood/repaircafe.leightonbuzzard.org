@@ -101,7 +101,7 @@
                                     events, and if you have any repair skills, please do consider becoming one of our
                                     invaluable fixers!</a>
                             </div>
-                            <a href="#">
+                            <a href="/user/profile">
                                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                                     <div>Volunteer</div>
                                     <div class="ml-1 text-indigo-500">
