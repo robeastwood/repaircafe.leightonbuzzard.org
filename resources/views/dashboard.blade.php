@@ -12,7 +12,8 @@
                         Welcome to Repair Cafe Leighton Buzzard!
                     </div>
                     <div class="mt-6 text-gray-500">
-                        Everything you need to know about how to join in with our upcoming events, either to get help with your broken items or to join in and help.
+                        Everything you need to know about how to join in with our upcoming events, either to get help
+                        with your broken items or to join in and help.
                     </div>
                 </div>
 
@@ -54,7 +55,8 @@
 
                         <div class="ml-12">
                             <div class="mt-2 text-sm text-gray-500">
-                                Register the details of a broken item that you'd like to bring to a Repair Cafe event
+                                By telling us in advance about the details of a broken item that you'd like to bring to
+                                a Repair Cafe event, we can be better prepared to help fix it.
                             </div>
 
                             <a href="#">
