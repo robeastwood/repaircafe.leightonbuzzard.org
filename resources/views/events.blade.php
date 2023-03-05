@@ -9,17 +9,18 @@
                     </h2>
                 </div>
             </div>
-            <div class="flex-1 text-right">
-                <button class="bg-green-300 hover:bg-green-400 text-green-800 font-bold py-2 px-4 rounded-full">
-                    <i class="far fa-calendar-plus mr-2"></i>
-                    <span>Add Event</span>
-                </button>
-            </div>
+            @if (Auth::user()->is_admin)
+                <div class="flex-1 text-right">
+                    @livewire('create-event')
+                </div>
+            @endif
         </div>
+
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <livewire:event-list />
+            @livewire('event-list')
         </div>
     </div>
 </x-app-layout>

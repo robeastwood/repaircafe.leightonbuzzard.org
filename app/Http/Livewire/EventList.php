@@ -10,6 +10,8 @@ class EventList extends Component
 {
     public $futureEvents;
 
+    protected $listeners = ["eventCreated" => "render"];
+
     public function render()
     {
         // get future events
