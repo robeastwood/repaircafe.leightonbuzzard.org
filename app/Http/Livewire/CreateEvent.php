@@ -34,7 +34,6 @@ class CreateEvent extends Component
     public function createEvent()
     {
         if (!Auth::user()->is_admin) {
-            Abort(403, "You're not an admin");
         }
 
         $this->validate();
@@ -45,9 +44,9 @@ class CreateEvent extends Component
         $event->starts_at = Carbon::parse($this->date . " " . $this->startTime);
         $event->ends_at = Carbon::parse($this->date . " " . $this->endTime);
         $event->save();
+        $this->showModal = false;
         $this->emit("saved");
         $this->emit("eventCreated");
-        $this->showModal = false;
     }
 
     public function render()
