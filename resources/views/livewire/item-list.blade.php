@@ -31,10 +31,10 @@
                             class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
                             Issue Description
                         </th>
-
+{{-- 
                         <th scope="col" class="relative py-3.5 px-0">
                             <span class="sr-only">Manage</span>
-                        </th>
+                        </th> --}}
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -148,7 +148,7 @@
                                     <p class="text-gray-700">{!! nl2br(e($item->issue)) !!}</p>
                                 </div>
                             </td>
-                            <td class="px-2 py-2 text-sm whitespace-nowrap text-right">
+                            {{-- <td class="px-2 py-2 text-sm whitespace-nowrap text-right">
                                 <div x-data="{ isOpen: false }" class="relative inline-block">
                                     <!-- Dropdown toggle button -->
                                     <button @click="isOpen = !isOpen"
@@ -176,7 +176,7 @@
                                             Remove from event</a>
                                     </div>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
