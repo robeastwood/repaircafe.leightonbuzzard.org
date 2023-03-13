@@ -52,7 +52,7 @@
 
             <div class="bg-white sm:rounded-xl shadow-md p-4 mb-4">
 
-                @livewire('item-list', ['items' => $event->items])
+                @livewire('item-list', ['items' => $event->items,'event'=>$event])
 
             </div>
         </div>

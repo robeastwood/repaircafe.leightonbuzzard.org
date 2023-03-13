@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,13 +24,7 @@ class ItemFactory extends Factory
         return [
             "user_id" => User::all()->random()->id,
             "category_id" => $category->id,
-            "status" => $this->faker->randomElement([
-                "broken",
-                "assessed",
-                "fixed",
-                "awaitingparts",
-                "unfixable",
-            ]),
+            "status" => $this->faker->randomElement(Item::statusOptions()),
             "description" => $this->faker->words(3, true),
             "issue" => $this->faker->paragraph(),
             "notes" => $this->faker->paragraph(),

@@ -34,6 +34,10 @@ class CreateEvent extends Component
     public function createEvent()
     {
         if (!Auth::user()->is_admin) {
+            Abort(
+                404,
+                "Denied. You do not have permission to perform this operation"
+            );
         }
 
         $this->validate();

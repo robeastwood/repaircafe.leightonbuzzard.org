@@ -9,6 +9,16 @@ class Item extends Model
 {
     use HasFactory;
 
+    public static function statusOptions()
+    {
+        return ["broken", "assessed", "fixed", "awaitingparts", "unfixable"];
+    }
+
+    public static function powerOptions()
+    {
+        return ["no", "mains", "batteries", "other", "unknown"];
+    }
+
     /**
      * The user this item belongs to, if set
      */
