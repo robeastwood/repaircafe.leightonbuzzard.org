@@ -23,6 +23,12 @@
                     </x-jet-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('items') }}" :active="request()->routeIs('items')">
+                        {{ __('My Items') }}
+                    </x-jet-nav-link>
+                </div>
+
                 @if (Auth::user()->is_admin)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">

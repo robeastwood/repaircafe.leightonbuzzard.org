@@ -1,24 +1,10 @@
 <div>
-    <div class="flex items-center">
-        <div class="flex-1 text-left">
-            <div class="flex items-center">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ $items->count() }} Booked in items:
-                </h2>
-            </div>
-        </div>
-        <div class="flex-1 text-right">
-            @livewire('create-item', ['event' => $event])
-        </div>
-    </div>
-
     <div class="inline-block min-w-full py-2 align-middle">
         <div class="border border-gray-200">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col"
-                            class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
+                        <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
                             Owner
                         </th>
 
@@ -27,14 +13,13 @@
                             Details
                         </th>
 
-                        <th scope="col"
-                            class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
                             Issue Description
                         </th>
-{{-- 
+
                         <th scope="col" class="relative py-3.5 px-0">
                             <span class="sr-only">Manage</span>
-                        </th> --}}
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -56,99 +41,30 @@
                             </td>
                             <td class="px-2 py-2 text-sm font-medium whitespace-nowrap">
 
-                                <div>
-                                    <p class="text-gray-500 ">
-                                        {{ $item->category->name }}:
-                                    </p>
-                                </div>
 
                                 <div>
                                     <p class="text-gray-700 ">{{ $item->description }}
                                     </p>
                                 </div>
-                                @switch($item->powered)
-                                    @case('no')
-                                        <div class="text-sm bg-gray-200 text-gray-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="fas fa-plug-circle-xmark"></i>
-                                            <span>Unpowered</span>
-                                        </div>
-                                    @break
 
-                                    @case('batteries')
-                                        <div
-                                            class="text-sm bg-green-200 text-green-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="fas fa-battery-half"></i>
-                                            <span>Battery Powered</span>
-                                        </div>
-                                    @break
+                                <div>
+                                    <p class="text-gray-500 my-2">
+                                        Category: {{ $item->category->name }}
+                                    </p>
+                                </div>
 
-                                    @case('mains')
-                                        <div class="text-sm bg-red-200 text-red-800 py-1 px-1 text-center rounded-full mt-1">
-                                            <i class="fas fa-plug-circle-bolt"></i>
-                                            <span>Mains Powered</span>
-                                        </div>
-                                    @break
 
-                                    @case('other')
-                                        <div
-                                            class="text-sm bg-yellow-200 text-yellow-800 py-1 px-1 text-center rounded-full mt-1">
-                                            <i class="fas fa-plug-circle-exclamation"></i>
-                                            <span>Other</span>
-                                        </div>
-                                    @break
+                                <x-pill-powered :powered="$item->powered" class="block" />
 
-                                    @default
-                                        <div class="text-sm bg-blue-200 text-blue-800 py-1 px-1 text-center rounded-full mt-1">
-                                            <i class="fas fa-circle-question"></i>
-                                            <span>Unknown</span>
-                                        </div>
-                                @endswitch
+                                <x-pill-status :status="$item->status" class="block" />
 
-                                @switch($item->status)
-                                    @case('broken')
-                                        <div class="text-sm bg-gray-200 text-gray-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="fas fa-heart-crack"></i>
-                                            <span>Broken</span>
-                                        </div>
-                                    @break
-
-                                    @case('assessed')
-                                        <div class="text-sm bg-blue-200 text-blue-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="fas fa-magnifying-glass"></i>
-                                            <span>Assessed</span>
-                                        </div>
-                                    @break
-
-                                    @case('fixed')
-                                        <div
-                                            class="text-sm bg-green-200 text-green-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="far fa-face-grin"></i>
-                                            <span>Fixed</span>
-                                        </div>
-                                    @break
-
-                                    @case('awaitingparts')
-                                        <div
-                                            class="text-sm bg-yellow-200 text-yellow-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="far fa-hourglass"></i>
-                                            <span>Awaiting Parts</span>
-                                        </div>
-                                    @break
-
-                                    @case('unfixable')
-                                        <div class="text-sm bg-red-200 text-red-800 py-1 px-2 text-center rounded-full mt-1">
-                                            <i class="fas fa-skull-crossbones"></i>
-                                            <span>Unfixable</span>
-                                        </div>
-                                    @break
-                                @endswitch
                             </td>
                             <td class="px-2 py-2 text-sm">
                                 <div>
                                     <p class="text-gray-700">{!! nl2br(e($item->issue)) !!}</p>
                                 </div>
                             </td>
-                            {{-- <td class="px-2 py-2 text-sm whitespace-nowrap text-right">
+                            <td class="px-2 py-2 text-sm whitespace-nowrap text-right">
                                 <div x-data="{ isOpen: false }" class="relative inline-block">
                                     <!-- Dropdown toggle button -->
                                     <button @click="isOpen = !isOpen"
@@ -171,12 +87,12 @@
                                         <a href="{{ route('item', ['id' => $item->id]) }}"
                                             class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform hover:bg-gray-100-700">
                                             View Details</a>
-                                        <a href="#"
+                                        {{-- <a href="#"
                                             class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform hover:bg-gray-100-700">
-                                            Remove from event</a>
+                                            Remove from event</a> --}}
                                     </div>
                                 </div>
-                            </td> --}}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

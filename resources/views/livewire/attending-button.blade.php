@@ -33,7 +33,7 @@
                 x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
                 x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-90"
-                class="absolute right-0 z-20 px-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
+                class="absolute right-0 z-20 px-2 mt-2 origin-top-right bg-white rounded-md shadow-xl">
                 @if ($status != 'attending')
                     <button wire:click="rsvp('attending'); isOpen = false" @click="isOpen = false"
                         class="bg-green-300 hover:bg-green-400 text-green-800 font-bold py-2 px-4 rounded-full mb-2 whitespace-nowrap">

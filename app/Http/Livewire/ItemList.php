@@ -8,18 +8,12 @@ use Livewire\Component;
 class ItemList extends Component
 {
     public $items;
-    public $event;
 
     protected $listeners = ["itemCreated" => "created"];
 
-    public function created()
+    public function created(Item $newItem)
     {
-        if ($this->event) {
-            $this->event->refresh();
-            $this->items = $this->event->items;
-        } else {
-            $this->items = Item::all();
-        }
+        $this->items->push($newItem);
         $this->render();
     }
 

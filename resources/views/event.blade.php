@@ -52,7 +52,20 @@
 
             <div class="bg-white sm:rounded-xl shadow-md p-4 mb-4">
 
-                @livewire('item-list', ['items' => $event->items,'event'=>$event])
+                <div class="flex items-center">
+                    <div class="flex-1 text-left">
+                        <div class="flex items-center">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                {{ $event->items->count() }} Booked in items:
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-right">
+                        @livewire('create-item', ['event' => $event])
+                    </div>
+                </div>
+
+                @livewire('item-list', ['items' => $event->items])
 
             </div>
         </div>

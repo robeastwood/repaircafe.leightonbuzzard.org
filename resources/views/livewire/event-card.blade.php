@@ -35,7 +35,7 @@
         </div>
         <div class="mt-2 uppercase tracking-wide text-sm text-yellow-500 font-semibold">
             Guests attending:
-            <strong>{{ count($event->users()->wherePivot('volunteer', false)->get()) }}</strong>
+            <strong>{{ count($event->users()->wherePivot('volunteer', null)->get()) }}</strong>
         </div>
         <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
             Items booked in: <strong>{{ count($event->items) }}</strong>

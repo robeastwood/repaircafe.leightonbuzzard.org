@@ -46,7 +46,7 @@ class CreateItem extends Component
 
         // create new item
         $item = new Item();
-        if (!$this->anonymous) {
+        if (!$this->anonymous || !Auth::user()->is_admin) {
             $item->user_id = Auth::id();
         }
         $item->category_id = $this->category;
@@ -59,12 +59,13 @@ class CreateItem extends Component
         $item->save();
         if ($this->event) {
             $item->events()->syncWithoutDetaching($this->event);
+            Auth::user()
+                ->events()
+                ->syncWithoutDetaching($this->event);
         }
-
         $this->showModal = false;
-
         $this->emit("saved");
-        $this->emit("itemCreated");
+        $this->emit("itemCreated", $item->id);
     }
 
     public function render()

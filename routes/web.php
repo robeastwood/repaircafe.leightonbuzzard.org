@@ -41,6 +41,7 @@ Route::middleware([
     Route::get("/events/{id}", [EventController::class, "show"])->name("event");
     Route::get("/events", [EventController::class, "list"])->name("events");
     Route::get("/items/{id}", [ItemController::class, "show"])->name("item");
+    Route::get("/items", [ItemController::class, "myItems"])->name("items");
 });
 
 // admins:
