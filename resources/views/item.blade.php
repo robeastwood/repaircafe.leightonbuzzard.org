@@ -13,6 +13,9 @@
                 <h2 class="font-semibold text-base sm:text-lg md:text-xl text-gray-500 leading-tight">
                     Created: {{ Carbon\Carbon::parse($item->created_at)->format('l jS \\of F') }}
                 </h2>
+                <h2 class="font-semibold text-base sm:text-lg md:text-xl text-gray-500 leading-tight">
+                    Last update: {{ Carbon\Carbon::parse($item->updated_at)->format('l jS \\of F') }}
+                </h2>
             </div>
         </div>
     </x-slot>

@@ -126,7 +126,7 @@
                                 {{ __('Manage your:') }}
                             </div> --}}
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="{{ route('items') }}">
                                 {{ __('My Items') }}
                             </x-jet-dropdown-link>
 
