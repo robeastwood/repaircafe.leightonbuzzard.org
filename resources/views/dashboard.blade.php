@@ -49,9 +49,8 @@
                     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
                         <div class="flex items-center">
                             <i class="text-gray-500 text-3xl fas fa-heart-crack"></i>
-                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a
-                                    href="{{ route('items') }}">My
-                                    Items</a></div>
+                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">My
+                                    Items</div>
                         </div>
 
                         <div class="ml-12">
@@ -60,7 +59,8 @@
                                 a Repair Cafe event, we can be better prepared to help fix it.
                             </div>
 
-                            <a href="{{ route('items') }}">
+                            <div class="mt-2 font-light text-gray-400">Coming soon!</div>
+                            {{-- <a href="{{ route('items') }}">
                                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                                     <div>Manage Items</div>
                                     <div class="ml-1 text-indigo-500">
@@ -71,15 +71,15 @@
                                         </svg>
                                     </div>
                                 </div>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
 
                     <div class="p-6 border-t border-gray-200">
                         <div class="flex items-center">
                             <i class="text-gray-500 text-3xl fas fa-stopwatch"></i>
-                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="#">Repair
-                                    Stats</a></div>
+                            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Repair
+                                    Stats</div>
                         </div>
 
                         <div class="ml-12">

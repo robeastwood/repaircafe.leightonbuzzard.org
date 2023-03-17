@@ -23,11 +23,11 @@
                     </x-jet-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('items') }}" :active="request()->routeIs('items')">
                         {{ __('My Items') }}
                     </x-jet-nav-link>
-                </div>
+                </div> --}}
 
                 @if (Auth::user()->is_admin)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -126,9 +126,9 @@
                                 {{ __('Manage your:') }}
                             </div> --}}
 
-                            <x-jet-dropdown-link href="{{ route('items') }}">
+                            {{-- <x-jet-dropdown-link href="{{ route('items') }}">
                                 {{ __('My Items') }}
-                            </x-jet-dropdown-link>
+                            </x-jet-dropdown-link> --}}
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('My Profile') }}
