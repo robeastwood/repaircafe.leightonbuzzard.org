@@ -162,7 +162,7 @@
                                 <span class="block uppercase text-gray-600 text-sm font-semibold mb-2">Find out
                                     more</span>
                                 <ul class="list-unstyled">
-                                    <li>
+                                    {{-- <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                             href="#">
                                             About Us
@@ -170,19 +170,25 @@
                                     </li>
                                     <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                            href="#">
+                                            href="/privacy">
                                             Privacy Policy
+                                        </a>
+                                    </li> --}}
+                                    <li>
+                                        <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                            href="health-and-safety">
+                                            Health &amp; Safety Policy
                                         </a>
                                     </li>
                                     <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                            href="#">
+                                            href="volunteer-policy">
                                             Volunteer Policy
                                         </a>
                                     </li>
                                     <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                            href="#">
+                                            href="repair-disclaimer">
                                             Repair Disclaimer
                                         </a>
                                     </li>
@@ -217,22 +223,6 @@
                         </div>
                     </div>
                 </div>
-                <!--
-                                                        <hr class="my-6 border-gray-400" />
-                                                        <div
-                                                        class="flex flex-wrap items-center md:justify-between justify-center"
-                                                    >
-                                                        <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-                                                            <div class="text-sm text-gray-600 font-semibold py-1">
-                                                                Copyright © 2019 Tailwind Starter Kit by
-                                                                <a
-                                                                    href="https://www.creative-tim.com"
-                                                                    class="text-gray-600 hover:text-gray-900"
-                                                                    >Creative Tim</a
-                                                                >.
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
             </div>
         </footer>
     </div>

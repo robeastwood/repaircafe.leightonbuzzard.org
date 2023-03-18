@@ -1,3 +1,3 @@
 # Terms of Service
 
-Edit this file to define the terms of service for your application.
+Website terms of service TBC

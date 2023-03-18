@@ -22,6 +22,7 @@ class CreateItem extends Component
     public $issue;
     public $powerOptions;
     public $powered;
+    public $disclaimer;
 
     public function rules()
     {
@@ -30,6 +31,7 @@ class CreateItem extends Component
             "description" => "required",
             "issue" => "required",
             "powered" => ["required", Rule::in(Item::powerOptions())],
+            "disclaimer" => "accepted",
         ];
     }
 
@@ -43,6 +45,8 @@ class CreateItem extends Component
     public function createItem()
     {
         $this->validate();
+
+        dd($this->disclaimer);
 
         // create new item
         $item = new Item();

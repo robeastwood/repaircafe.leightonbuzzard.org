@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PolicyController;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,10 @@ Route::get("/", function () {
         ->first();
     return view("welcome", ["nextEvent" => $nextEvent]);
 });
-Route::get("/events/{id}", "EventController@showEvent");
+//Route::get("/events/{id}", "EventController@showEvent");
+Route::get("/volunteer-policy", [PolicyController::class, "showPolicy"]);
+Route::get("/health-and-safety", [PolicyController::class, "showPolicy"]);
+Route::get("/repair-disclaimer", [PolicyController::class, "showPolicy"]);
 
 // logged in users:
 Route::middleware([
