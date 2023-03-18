@@ -44,12 +44,12 @@
                             <x-jet-checkbox name="terms" id="terms" required />
 
                             <div class="ml-2">
-                                {!! __('I agree to the :rd and :hs_policy', [
-                                    'rd' =>
+                                {!! __('I agree to the :privacy and :hs_policy', [
+                                    'privacy' =>
                                         '<a target="_blank" href="' .
-                                        url('/repair-disclaimer') .
+                                        url('/privacy-policy') .
                                         '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
-                                        __('Repair Disclaimer') .
+                                        __('Privacy Policy') .
                                         '</a>',
                                     'hs_policy' =>
                                         '<a target="_blank" href="' .

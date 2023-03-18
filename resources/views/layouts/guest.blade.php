@@ -167,13 +167,13 @@
                                             href="#">
                                             About Us
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                            href="/privacy">
+                                            href="/privacy-policy">
                                             Privacy Policy
                                         </a>
-                                    </li> --}}
+                                    </li>
                                     <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                             href="health-and-safety">
@@ -206,8 +206,8 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <a class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                            href="https://totallylocallyleightonbuzzard.wordpress.com">
-                                            Totally Locally LB
+                                            href="https://totallylb.wordpress.com">
+                                            Totally Leighton Buzzard
                                         </a>
                                     </li>
                                     <li>

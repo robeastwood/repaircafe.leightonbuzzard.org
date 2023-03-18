@@ -129,7 +129,7 @@
                 </div>
                 <div class="w-full md:w-7/12 px-4 mr-auto ml-auto">
                     <p class="text-2xl text-light leading-relaxed mt-4 mb-4 text-gray-700">
-                        <a href="https://totallylocallyleightonbuzzard.wordpress.com/">Totally Leighton Buzzard</a> are
+                        <a href="https://totallylb.wordpress.com/">Totally Leighton Buzzard</a> are
                         planning to host monthly Repair Café events in our town. We bring the cake! You bring your
                         items! Everyone brings a willingness to share and learn!
                     </p>

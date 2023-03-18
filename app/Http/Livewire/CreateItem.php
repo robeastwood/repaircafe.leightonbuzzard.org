@@ -46,8 +46,6 @@ class CreateItem extends Component
     {
         $this->validate();
 
-        dd($this->disclaimer);
-
         // create new item
         $item = new Item();
         if (!$this->anonymous || !Auth::user()->is_admin) {
