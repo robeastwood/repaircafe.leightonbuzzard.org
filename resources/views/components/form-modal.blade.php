@@ -1,8 +1,8 @@
 <div x-data="{ show: @entangle($attributes->wire('model')) }" x-show="show" @keydown.escape.window="show=false" style="display: none">
     <div class="fixed inset-0 bg-gray-900 opacity-90" @click="show=false"></div>
     <div
-        {{ $attributes->merge(['class' => 'bg-white shadow-md p-4 max-w-lg h-fit m-auto sm:rounded-md fixed inset-0']) }}>
-        <form class="flex flex-col h-full justify-between text-left">
+        {{ $attributes->merge(['class' => 'bg-white shadow-md p-4 h-full max-w-lg max-h-fit m-auto sm:rounded-md fixed inset-0 overflow-auto']) }}>
+        <form class="flex flex-col justify-between text-left">
             <header>
                 <h1 class="font-bold text-lg">{{ $title }}</h1>
             </header>
