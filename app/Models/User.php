@@ -53,6 +53,18 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = ["profile_photo_url"];
 
+    // /**
+    //  * Handle events - deletion
+    //  */
+    // protected static function booted()
+    // {
+    //     static::deleting(function ($user) {
+    //         $user->events()->detach();
+    //         $user->skills()->detach();
+    //         $user->items()->update(["user_id" => null]);
+    //     });
+    // }
+
     public function events()
     {
         return $this->belongsToMany(Event::class)->withPivot("volunteer");
