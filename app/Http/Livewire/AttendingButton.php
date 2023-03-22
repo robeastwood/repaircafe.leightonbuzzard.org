@@ -45,9 +45,9 @@ class AttendingButton extends Component
         return view("livewire.attending-button");
     }
 
-    public function rsvp($status)
+    public function updatedStatus($newStatus)
     {
-        switch ($status) {
+        switch ($newStatus) {
             case "attending":
                 $this->event->users()->syncWithoutDetaching([
                     $this->user->id => ["volunteer" => false],
