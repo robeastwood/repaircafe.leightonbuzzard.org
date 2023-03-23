@@ -1,6 +1,6 @@
 <a href="{{ route('item', ['id' => $item->id]) }}"
     class="block sm:m-4 mb-4 sm:rounded-xl bg-gray-50 hover:bg-gray-100 shadow-md">
-    <div class="flex items-start gap-4 p-1 sm:p-6">
+    <div class="flex items-start gap-4 p-3 sm:p-6">
         <div>
             <h1 class="font-medium sm:text-lg">
                 Item ID {{ $item->id }}: {{ $item->description }}
