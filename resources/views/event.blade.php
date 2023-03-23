@@ -39,20 +39,20 @@
 
             <div class="bg-white sm:rounded-xl shadow-md p-4 mb-4">
 
-                <div class="flex items-top">
-                    <div class="flex-1 text-left">
+                <div class="lg:flex items-top">
+                    <div class="text-left basis-3/4">
                         @livewire('volunteers-and-skills', ['event' => $event])
                     </div>
-                    <div class="flex-1 text-right">
+                    <div class="lg:text-right lg:basis-1/4 mt-3">
                         @livewire('attending-button', ['event' => $event])
                     </div>
                 </div>
 
             </div>
 
-            <div class="bg-white sm:rounded-xl shadow-md p-4 mb-4">
+            <div class="bg-white sm:rounded-xl shadow-md mb-4">
 
-                <div class="flex items-center">
+                <div class="flex items-center p-2 sm:p-4">
                     <div class="flex-1 text-left">
                         <div class="flex items-center">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
