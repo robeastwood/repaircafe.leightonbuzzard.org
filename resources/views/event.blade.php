@@ -7,6 +7,7 @@
                     <h2 class="font-semibold text-lg sm:text-2xl md:text-3xl text-gray-800 leading-tight">
                         {{ Carbon\Carbon::parse($event->starts_at)->format('l jS \\of F') }}
                     </h2>
+                    <x-abutton class="ml-5" href="{{ route('checkin', $event->id) }}">Check In</x-abutton>
                 </div>
             </div>
             <div class="flex-2 text-right">
