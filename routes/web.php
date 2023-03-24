@@ -27,7 +27,7 @@ Route::get("/", function () {
         ->orderBy("ends_at")
         ->first();
     return view("welcome", ["nextEvent" => $nextEvent]);
-});
+})->name('homepage');
 //Route::get("/events/{id}", "EventController@showEvent");
 Route::get("/volunteer-policy", [PolicyController::class, "showPolicy"]);
 Route::get("/health-and-safety", [PolicyController::class, "showPolicy"]);

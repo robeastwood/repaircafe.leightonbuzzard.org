@@ -11,7 +11,35 @@ class Item extends Model
 
     public static function statusOptions()
     {
-        return ["broken", "assessed", "fixed", "awaitingparts", "unfixable"];
+        $statuses = [
+            "broken" => [
+                "display" => "Broken",
+                "colour" => "bg-gray-200 text-gray-800",
+                "icon" => "fas fa-heart-crack",
+            ],
+            "assessed" => [
+                "display" => "Assessed",
+                "colour" => "bg-blue-200 text-blue-800",
+                "icon" => "fas fa-magnifying-glass",
+            ],
+            "fixed" => [
+                "display" => "Fixed!",
+                "colour" => "bg-green-200 text-green-800",
+                "icon" => "far fa-face-grin",
+            ],
+            "awaitingparts" => [
+                "display" => "Awaiting Parts",
+                "colour" => "bg-yellow-200 text-yellow-800",
+                "icon" => "far fa-hourglass",
+            ],
+            "unfixable" => [
+                "display" => "Unfixable",
+                "colour" => "bg-red-200 text-red-800",
+                "icon" => "fas fa-skull-crossbones",
+            ],
+        ];
+
+        return $statuses;
     }
 
     public static function powerOptions()
@@ -41,5 +69,13 @@ class Item extends Model
     public function events()
     {
         return $this->belongsToMany(Event::class);
+    }
+
+    /**
+     * the events this item is booked into
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
     }
 }
