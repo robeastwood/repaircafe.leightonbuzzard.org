@@ -38,8 +38,8 @@ class ItemNotes extends Component
 
         // user must be a volunteer, an admin, or own this item
         if (
-            !Auth::user()->volunteer ||
-            !Auth::user()->is_admin ||
+            !Auth::user()->volunteer &&
+            !Auth::user()->is_admin &&
             $this->item->user_id != Auth::id()
         ) {
             abort("403", "Permission denied");
