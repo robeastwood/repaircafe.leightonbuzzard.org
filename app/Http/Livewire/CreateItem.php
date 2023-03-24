@@ -56,8 +56,6 @@ class CreateItem extends Component
         $item->issue = $this->issue;
         $item->powered = $this->powered;
         $item->status = "broken";
-        $item->notes =
-            Carbon::now() . ": Item record created by " . Auth::user()->name;
         $item->save();
         if ($this->event) {
             $item->events()->syncWithoutDetaching($this->event);

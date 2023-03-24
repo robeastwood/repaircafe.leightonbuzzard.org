@@ -24,7 +24,7 @@ class ItemFactory extends Factory
         return [
             "user_id" => User::all()->random()->id,
             "category_id" => $category->id,
-            "status" => $this->faker->randomElement(Item::statusOptions()),
+            "status" => $this->faker->randomElement(array_keys(Item::statusOptions())),
             "description" => $this->faker->words(3, true),
             "issue" => $this->faker->paragraph(),
             "notes" => $this->faker->paragraph(),

@@ -34,7 +34,7 @@
 
                 <div class="flex items-center gap-1 text-gray-500">
                     <i class="far fa-comments"></i>
-                    <p class="text-xs">0 notes</p>
+                    <p class="text-xs">{{ $item->notes()->count() }} notes</p>
                 </div>
 
                 <span class="hidden sm:block" aria-hidden="true">&middot;</span>
@@ -47,141 +47,11 @@
     </div>
 
     <div class="flex justify-end">
-        @switch($item->status)
-            @case('broken')
-                <strong
-                    class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl bg-gray-600 py-1.5 px-3 text-white">
-                    <i class="fas sm:text-2xl fa-heart-crack"></i>
-                    <span class="font-medium text-xs sm:text-lg">Broken</span>
-                </strong>
-            @break
-
-            @case('assessed')
-                <strong
-                    class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl bg-blue-600 py-1.5 px-3 text-white">
-                    <i class="fas sm:text-2xl fa-magnifying-glass"></i>
-                    <span class="font-medium text-xs sm:text-lg">Assessed</span>
-                </strong>
-            @break
-
-            @case('fixed')
-                <strong
-                    class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl bg-green-600 py-1.5 px-3 text-white">
-                    <i class="far sm:text-2xl fa-face-grin"></i>
-                    <span class="font-medium text-xs sm:text-lg">Fixed</span>
-                </strong>
-            @break
-
-            @case('awaitingparts')
-                <strong
-                    class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl bg-yellow-600 py-1.5 px-3 text-white">
-                    <i class="far sm:text-2xl fa-hourglass"></i>
-                    <span class="font-medium text-xs sm:text-lg">Awaiting Parts</span>
-                </strong>
-            @break
-
-            @case('unfixable')
-                <strong class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl bg-red-600 py-1.5 px-3 text-white">
-                    <i class="fas sm:text-2xl fa-skull-crossbones"></i>
-                    <span class="font-medium text-xs sm:text-lg">Unfixable</span>
-                </strong>
-            @break
-
-            @default
-                <strong
-                    class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl bg-orange-600 py-1.5 px-3 text-white">
-                    <i class="fas sm:text-2xl fa-circle-question"></i>
-                    <span class="font-medium text-xs sm:text-lg">Unknown</span>
-                </strong>
-            @break
-        @endswitch
-
+        <strong
+            class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl py-1.5 px-3 {{ \App\Models\Item::statusOptions()[$item->status]['colour'] }}">
+            <i class="{{ \App\Models\Item::statusOptions()[$item->status]['icon'] }} sm:text-2xl"></i>
+            <span
+                class="font-medium text-xs sm:text-lg">{{ \App\Models\Item::statusOptions()[$item->status]['display'] }}</span>
+        </strong>
     </div>
 </a>
-
-{{-- <a href="{{ route('item', ['id' => $item->id]) }}" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
-    <span class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
-
-    <div class="sm:flex sm:justify-between sm:gap-4">
-        <div>
-            <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-                Building a SaaS product as a software developer
-            </h3>
-
-            <p class="mt-1 text-xs font-medium text-gray-600">By John Doe</p>
-        </div>
-
-        <div class="hidden sm:block sm:shrink-0">
-            <img alt="Paul Clapton"
-                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                class="h-16 w-16 rounded-lg object-cover shadow-sm" />
-        </div>
-    </div>
-
-    <div class="mt-4">
-        <div class="text-xs text-gray-500">Current Status</div>
-        <p class="max-w-[40ch] text-sm text-gray-500">
-            {!! nl2br(e($item->issue)) !!}
-        </p>
-    </div>
-
-    <dl class="mt-6 flex gap-4 sm:gap-6">
-        <div class="flex flex-col">
-            <dd class="text-xs text-gray-500">Current Status</dd>
-            <x-pill-status :status="$item->status" class="block" />
-        </div>
-    </dl>
-</a> --}}
-
-{{-- <div class="flex items-center">
-        <div class="text-left">
-            <div class="flex items-center">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    description
-                </h2>
-            </div>
-        </div>
-        <div class="text-right">
-            button
-        </div>
-    </div>
-
-    asdfasdfasdf
-
-    <p>{{ $item->description }}</p>
-
-    <div>
-        @if ($item->user)
-            <h2 class="font-medium text-gray-800">
-                Owner: {{ $item->user->name }}
-            </h2>
-        @else
-            <h2 class="text-sm italic font-normal text-gray-600">
-                Unregistered User
-            </h2>
-        @endif
-    </div>
-
-    <div>
-        <p class="text-gray-700 ">{{ $item->description }}
-        </p>
-    </div>
-
-    <div>
-        <p class="text-gray-500 my-2">
-            Category: {{ $item->category->name }}
-        </p>
-    </div>
-
-    <x-pill-powered :powered="$item->powered" class="block" />
-
-    <x-pill-status :status="$item->status" class="block" />
-
-    <div>
-        <p class="text-gray-700">{!! nl2br(e($item->issue)) !!}</p>
-    </div>
-
-    <x-abutton href="{{ route('item', ['id' => $item->id]) }}">
-        Open Details</x-abutton>
-
-</div> --}}

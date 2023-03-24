@@ -10,11 +10,8 @@
                 </div>
             </div>
             <div class="flex-2 text-right">
-                <h2 class="font-semibold text-base sm:text-lg md:text-xl text-gray-500 leading-tight">
+                <h2 class="font-semibold text-base sm:text-md md:text-xl text-gray-500 leading-tight">
                     Created: {{ Carbon\Carbon::parse($item->created_at)->format('l jS \\of F') }}
-                </h2>
-                <h2 class="font-semibold text-base sm:text-lg md:text-xl text-gray-500 leading-tight">
-                    Last update: {{ Carbon\Carbon::parse($item->updated_at)->format('l jS \\of F') }}
                 </h2>
             </div>
         </div>
@@ -54,20 +51,24 @@
                 </div>
 
                 <div>
-                    <h1 class="text-2xl text-gray-800">Notes:</h1>
-                    <div class="text-gray-700">{!! nl2br(e($item->notes)) !!}</div>
-                </div>
-
-                <div>
                     <h1 class="text-2xl text-gray-800">Registered at events:</h1>
                     <div class="text-gray-700">
                         @foreach ($item->events as $event)
-                            <p>{{ Carbon\Carbon::parse($event->starts_at)->format('l jS \\of F, g:i a') }} @ {{ $event->venue->name }}</p>
+                            <p>{{ Carbon\Carbon::parse($event->starts_at)->format('l jS \\of F, g:i a') }} @
+                                {{ $event->venue->name }}</p>
                         @endforeach
                     </div>
                 </div>
 
+                <div>
+                    <h1 class="text-2xl text-gray-800 my-3">Item History / Notes:</h1>
+
+                    @livewire('item-notes', ['item' => $item])
+
+                </div>
+
             </div>
         </div>
+
     </div>
 </x-app-layout>
