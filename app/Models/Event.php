@@ -34,8 +34,7 @@ class Event extends Model
     {
         return $this->belongsToMany(Item::class)
             ->withPivot("repairer_id")
-            ->withPivot("outcome")
-            ->withPivot("notes");
+            ->withPivot("checkedin");
     }
 
     /**

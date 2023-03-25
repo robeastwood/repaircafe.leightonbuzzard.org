@@ -64,7 +64,7 @@ class CreateItem extends Component
                 ->syncWithoutDetaching($this->event);
         }
         $this->showModal = false;
-        $this->emit("saved");
+        $this->emit("item");
         $this->emit("itemCreated", $item->id);
     }
 

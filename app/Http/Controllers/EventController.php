@@ -12,6 +12,11 @@ class EventController extends Controller
         return view("event", ["event" => Event::findOrFail($id)]);
     }
 
+    public function checkin($id)
+    {
+        return view("checkin", ["event" => Event::findOrFail($id)]);
+    }
+
     public function list()
     {
         return view("events");

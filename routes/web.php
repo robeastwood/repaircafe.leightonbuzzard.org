@@ -56,4 +56,5 @@ Route::middleware([
     "isAdmin",
 ])->group(function () {
     Route::get("/admin", [AdminController::class, "show"])->name("admin");
+    Route::get("/events/{id}/checkin", [EventController::class, "checkin"])->name("checkin");
 });
