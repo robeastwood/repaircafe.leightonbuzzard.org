@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use App\Models\Item;
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -68,7 +69,7 @@ class CheckinPage extends Component
 
         if ($checkedin) {
             $item->events()->syncWithoutDetaching([
-                $this->event->id => ["checkedin" => 1],
+                $this->event->id => ["checkedin" => Carbon::now()],
             ]);
         } else {
             $item->events()->detach($this->event->id);

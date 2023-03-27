@@ -79,7 +79,11 @@ class Item extends Model
      */
     public function checkedin()
     {
-        return $this->belongsToMany(Event::class)->wherePivot("checkedin", 1);
+        return $this->belongsToMany(Event::class)->wherePivot(
+            "checkedin",
+            "<>",
+            null
+        );
     }
 
     /**

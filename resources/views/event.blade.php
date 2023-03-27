@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                @livewire('item-list', ['items' => $event->items])
+                @livewire('item-list', ['items' => $event->items, 'event' => $event])
 
             </div>
         </div>

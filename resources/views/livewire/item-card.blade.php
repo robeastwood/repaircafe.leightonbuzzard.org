@@ -1,9 +1,16 @@
 <a href="{{ route('item', ['id' => $item->id]) }}"
     class="block sm:m-4 mb-4 sm:rounded-xl bg-gray-50 hover:bg-gray-100 shadow-md">
+
     <div class="flex items-start gap-4 p-3 sm:p-6">
         <div>
             <h1 class="font-medium sm:text-lg">
                 Item ID {{ $item->id }}: {{ $item->description }}
+                @if ($event && $item->checkedin->contains($event->id))
+                    <strong class="inline-flex ml-4 items-center gap-1 rounded-full py-1 px-2 bg-green-600 text-white">
+                        <i class="fas fa-check"></i>
+                        <span class="font-medium text-xs">Checked In</span>
+                    </strong>
+                @endif
             </h1>
 
             <h2 class="font-medium text-gray-700">
