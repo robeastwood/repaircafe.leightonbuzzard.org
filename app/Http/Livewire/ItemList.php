@@ -8,6 +8,7 @@ use Livewire\Component;
 class ItemList extends Component
 {
     public $items;
+    public $event;
 
     protected $listeners = ["itemCreated" => "created"];
 
