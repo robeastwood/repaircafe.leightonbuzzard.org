@@ -19,6 +19,8 @@ class CheckinPage extends Component
     public $name;
     public $user;
     public $newItem;
+    public $search;
+    public $searchResults = [];
 
     public function mount()
     {
@@ -42,6 +44,38 @@ class CheckinPage extends Component
         ];
     }
 
+    public function updatedSearch()
+    {
+        if (!Auth::user()->is_admin) {
+            abort(403, "Access Denied");
+        }
+
+        // clear results
+        $this->searchResults = [];
+
+        // if empty, don't go further
+        if (!$this->search) {
+            $this->user = null;
+            $this->email = "";
+            $this->name = "";
+            return;
+        }
+
+        // search for an item ID
+        $item = Item::find($this->search);
+        if ($item && $item->user_id) {
+            $this->searchResults[] = $item->user;
+        }
+
+        // find users by name or email
+        $users = User::where("name", "LIKE", "%" . $this->search . "%")
+            ->orWhere("email", "LIKE", "%" . $this->search . "%")
+            ->get();
+        foreach ($users as $user) {
+            $this->searchResults[] = $user;
+        }
+    }
+
     public function updatedEmail()
     {
         if (!Auth::user()->is_admin) {
@@ -57,8 +91,20 @@ class CheckinPage extends Component
             $this->name = $user->name;
         } else {
             $this->user = null;
-            $this->name = null;
         }
+    }
+
+    public function selectUser(User $user)
+    {
+        if (!Auth::user()->is_admin) {
+            abort(403, "Access Denied");
+        }
+        
+        // set user
+        $this->user = $user;
+        // clear search results
+        $this->search = $user->email;
+        $this->searchResults = [];
     }
 
     public function checkin(Item $item, $checkedin)
