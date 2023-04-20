@@ -1,28 +1,28 @@
 <div>
-    <x-jet-form-section submit="userDetails">
+    <x-jet-form-section submit="search" class='mt-4'>
         <x-slot name="title">
-            {{ __('Visitor Details') }}
+            {{ __('Search for Visitor') }}
         </x-slot>
 
         <x-slot name="description">
-            {{ __('Search by email address for an existing user. If it doesn\'t match an existing record, a new user entry will be created') }}
+            {{ __('Search for a visitor who is registered on the website already') }}
         </x-slot>
 
         <x-slot name="form">
-            <!-- Email -->
+            <!-- Search -->
             <div class="col-span-12 sm:col-span-12">
                 <div>
                     <div class="col-span-6 sm:col-span-4">
-                        <label class="block font-medium text-sm text-gray-700" for="email">
-                            Email address <x-jet-input-error for="email" class="mt-2 inline" />
+                        <label class="block font-medium text-sm text-gray-700" for="search">
+                            Search <x-jet-input-error for="search" class="mt-2 inline" />
                         </label>
 
                         <div class="flex items-center">
-                            <input id="email" wire:model="email"
+                            <input id="search" wire:model="search"
                                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full
                                         mr-3 leading-tight focus:outline-none"
-                                type="text" placeholder="Email address" aria-label="Email address">
-                            <button wire:click="$set('email', '')"
+                                type="text" placeholder="Email, Name or Item ID" aria-label="search">
+                            <button wire:click="$set('search', '')"
                                 class="bg-gray-800 border border-transparent hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition text-sm text-white mt-1 p-2 rounded"
                                 type="button">
                                 Clear
@@ -31,17 +31,59 @@
                     </div>
                 </div>
             </div>
-            <!-- Name -->
+            <!-- Search Results -->
             <div class="col-span-12 sm:col-span-12">
-                <label class="block font-medium text-sm text-gray-700" for="name">
-                    {{ $user ? __('Found Existing User') : __('Name (Visible to registered users)') }}
-                    <x-jet-input-error for="name" class="mt-2 inline" />
-                </label>
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name"
-                    :disabled="$user" autocomplete="name" placeholder="Name" />
+                @foreach ($searchResults as $result)
+                    <button wire:click="selectUser({{ $result->id }})"
+                        class="bg-gray-800 border border-transparent hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition text-sm text-white mt-1 p-2 rounded"
+                        type="button">
+                        {{ $result->name }} ({{ $result->email }})
+                    </button>
+                @endforeach
             </div>
         </x-slot>
     </x-jet-form-section>
+
+    @if (!$user)
+        <x-jet-form-section submit="userDetails" class='mt-4'>
+            <x-slot name="title">
+                {{ __('Register New User') }}
+            </x-slot>
+
+            <x-slot name="description">
+                {{ __('Register the details of a new visitor') }}
+            </x-slot>
+
+            <x-slot name="form">
+                <!-- Email -->
+                <div class="col-span-12 sm:col-span-12">
+                    <div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <label class="block font-medium text-sm text-gray-700" for="email">
+                                Email address <x-jet-input-error for="email" class="mt-2 inline" />
+                            </label>
+
+                            <div class="flex items-center">
+                                <input id="email" wire:model="email"
+                                    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full
+                                        mr-3 leading-tight focus:outline-none"
+                                    type="text" placeholder="Email address" aria-label="Email address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Name -->
+                <div class="col-span-12 sm:col-span-12">
+                    <label class="block font-medium text-sm text-gray-700" for="name">
+                        {{ $user ? __('Found Existing User') : __('Name (Visible to registered users)') }}
+                        <x-jet-input-error for="name" class="mt-2 inline" />
+                    </label>
+                    <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name"
+                        :disabled="$user" autocomplete="name" placeholder="Name" />
+                </div>
+            </x-slot>
+        </x-jet-form-section>
+    @endif
 
     @if ($user)
         <div class='md:grid md:grid-cols-3 md:gap-6 mt-4'>
