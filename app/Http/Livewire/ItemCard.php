@@ -8,6 +8,7 @@ class ItemCard extends Component
 {
 
     public $item;
+    public $event;
 
     public function render()
     {
