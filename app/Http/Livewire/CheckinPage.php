@@ -99,7 +99,7 @@ class CheckinPage extends Component
         if (!Auth::user()->is_admin) {
             abort(403, "Access Denied");
         }
-        
+
         // set user
         $this->user = $user;
         // clear search results
@@ -163,7 +163,7 @@ class CheckinPage extends Component
         $item->save();
 
         // attach to this event and checkin
-        $item->events()->attach($this->event, ["checkedin" => 1]);
+        $item->events()->attach($this->event, ["checkedin" => Carbon::now()]);
 
         // refresh user
         $this->user = User::findOrFail($this->user->id);
