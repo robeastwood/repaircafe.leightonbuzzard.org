@@ -105,6 +105,9 @@ class CheckinPage extends Component
         // clear search results
         $this->search = $user->email;
         $this->searchResults = [];
+        // set email and name
+        $this->name = $user->name;
+        $this->email = $user->email;
     }
 
     public function checkin(Item $item, $checkedin)
@@ -139,6 +142,7 @@ class CheckinPage extends Component
         }
 
         $this->validate();
+
 
         // create a new user?
         if (!$this->user) {
