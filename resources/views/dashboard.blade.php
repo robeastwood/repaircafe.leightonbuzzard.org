@@ -55,12 +55,10 @@
 
                         <div class="ml-12">
                             <div class="mt-2 text-sm text-gray-500">
-                                By telling us in advance about the details of a broken item that you'd like to bring to
-                                a Repair Cafe event, we can be better prepared to help fix it.
+                                Add details of a broken item that you'd like to bring to
+                                a Repair Cafe event, so we can be better prepared to help fix it.
                             </div>
-
-                            <div class="mt-2 font-light text-gray-400">Coming soon!</div>
-                            {{-- <a href="{{ route('items') }}">
+                            <a href="{{ route('items') }}">
                                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                                     <div>Manage Items</div>
                                     <div class="ml-1 text-indigo-500">
@@ -71,7 +69,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                            </a> --}}
+                            </a>
                         </div>
                     </div>
 

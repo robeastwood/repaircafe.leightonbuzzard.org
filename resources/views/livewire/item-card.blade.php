@@ -49,11 +49,30 @@
                 <p class="hidden sm:block sm:text-xs sm:text-gray-500">
                     Added on {{ Carbon\Carbon::parse($item->created_at)->format('l jS \\of F, g:ia') }}
                 </p>
+
+                <p>Booked in:</p>
+                {{ $item->events->where('ends_at', '>=', Carbon\Carbon::now())->pluck('starts_at') }}
             </div>
         </div>
     </div>
 
-    <div class="flex justify-end">
+    <div class="flex justify-between">
+        @if (count($item->events->where('ends_at', '>=', Carbon\Carbon::now())) > 0)
+            <strong class="inline-flex items-center gap-1 rounded-tr-xl sm:rounded-bl-xl py-1.5 px-3 bg-green-200">
+                <i class="far fa-calendar-days sm:text-2xl"></i>
+                <span class="font-medium text-xs sm:text-lg">Booked In:
+                    {{ $item->events->where('ends_at', '>=', Carbon\Carbon::now())->implode(function ($event) {
+                        return Carbon\Carbon::parse($event['starts_at'])->format('l jS \\of F, g:ia');
+                    }, ', ') }}</span>
+            </strong>
+        @else
+            <strong class="inline-flex items-center gap-1 rounded-tr-xl sm:rounded-bl-xl py-1.5 px-3 bg-orange-200">
+                <i class="fas fa-triangle-exclamation sm:text-2xl"></i>
+                <span class="font-medium text-xs sm:text-lg">
+                    Not booked into any future events
+                </span>
+            </strong>
+        @endif
         <strong
             class="inline-flex items-center gap-1 rounded-tl-xl sm:rounded-br-xl py-1.5 px-3 {{ \App\Models\Item::statusOptions()[$item->status]['colour'] }}">
             <i class="{{ \App\Models\Item::statusOptions()[$item->status]['icon'] }} sm:text-2xl"></i>
@@ -62,3 +81,4 @@
         </strong>
     </div>
 </a>
+
