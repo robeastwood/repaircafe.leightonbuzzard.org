@@ -7,6 +7,19 @@
             <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
         </div>
         <div class="container relative mx-auto">
+            <div class="text-center py-4 lg:px-4">
+                <div class="rounded p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                  <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">News</span>
+                  <span class="mr-2 text-left flex-auto">There'll be a clock & watch repair/advice provided by Dean Quy from Stephen Alan's Jewellers at the Repair Cafe on the 30th September
+                    </span>
+                </div>
+                <div class="rounded mt-2 p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                    <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">News</span>
+                    <span class="mr-2 text-left flex-auto">The Buzz Cycles group will be holding bike repair and second hand bike sales the market.<br/>10am - 4pm on Saturday 30 September
+
+                      </span>
+                  </div>
+              </div>
             <div class="items-center flex flex-wrap">
                 <div class="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center">
                     <div>
