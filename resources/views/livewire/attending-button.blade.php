@@ -7,12 +7,14 @@
                     <span class="text-sm text-red-800">{{ $message }}</span>
                 @enderror
             </label>
-
             <select id="status" wire:model="status"
                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
                 <option value="notattending">Not Attending</option>
-                <option value="attending">Attending</option>
-                <option value="volunteering">Volunteering</option>
+                <option value="attending">Just Attending</option>
+                <option value="helping">Helping</option>
+                @if (Auth::user()->fixer)
+                    <option value="fixing">Fixing</option>
+                @endif
             </select>
         </div>
     @else
