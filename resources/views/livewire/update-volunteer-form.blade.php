@@ -13,8 +13,18 @@
         <div class="col-span-12 sm:col-span-12">
             <p class="text-sm text-gray-600">
                 We would very much appreciate your help at the Repair Cafe events, even if you're non-technical.
-                Enabling this option will allow you to join events as a volunteer, you can help out with admin and
-                organisation, or if you're a Fixer list the skills you can offer.<br />
+                Enabling this option will allow you to join events as a volunteer, you can help out at repair cafe
+                events with organisational tasks such as:</p>
+
+            <ul class="text-sm list-disc text-gray-600 mx-8 my-2">
+                <li>Registering visitors</li>
+                <li>Helping with organisation</li>
+                <li>Recording repair results</li>
+                <li>Cake sales!</li>
+            </ul>
+            <p class="text-sm text-gray-600">
+                And if you have fixing skills, that's great! You can list the repair skills you can offer.</p>
+            <p class="text-sm text-gray-600 mt-1">
                 Please ensure you read and agree to the <a href="/volunteer-policy" target="_blank"
                     rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline">volunteer
                     policy</a> beforehand:</p>
