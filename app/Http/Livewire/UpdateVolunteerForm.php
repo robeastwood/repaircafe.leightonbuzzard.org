@@ -11,6 +11,7 @@ class UpdateVolunteerForm extends Component
 {
     private User $user;
     public $volunteer;
+    public $fixer;
     public $allSkills = [];
     public $userSkills = [];
     public $newSkill;
@@ -29,6 +30,7 @@ class UpdateVolunteerForm extends Component
         $user = Auth::user()->load("skills");
         $this->allSkills = Skill::all();
         $this->volunteer = $user->volunteer;
+        $this->fixer = $user->fixer;
         $this->userSkills = $user->skills->pluck("id")->toArray();
     }
 
@@ -41,6 +43,7 @@ class UpdateVolunteerForm extends Component
     {
         $user = Auth::user();
         $user->volunteer = $this->volunteer;
+        $user->fixer = $this->fixer;
         $user->skills()->sync($this->userSkills);
         $user->save();
         $this->emit('saved');

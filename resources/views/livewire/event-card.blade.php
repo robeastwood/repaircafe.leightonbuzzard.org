@@ -12,14 +12,19 @@
             {{ $event->venue->name }}
         </h3>
 
-        @if ($event->users()->wherePivot('volunteer', true)->get()->contains(Auth::user()))
+        @if ($event->users()->wherePivot('fixer', true)->get()->contains(Auth::user()))
             <span class="text-sm bg-green-300 text-green-800 font-bold py-1 px-2 rounded">
                 <i class="fas fa-wrench"></i>
-                <span>Volunteering</span>
+                <span>Fixing</span>
+            </span>
+        @elseif ($event->users()->wherePivot('volunteer', true)->get()->contains(Auth::user()))
+            <span class="text-sm bg-blue-300 text-blue-800 font-bold py-1 px-2 rounded">
+                <i class="fas fa-clipboard"></i>
+                <span>Helping</span>
             </span>
         @elseif ($event->users->contains(Auth::user()))
-            <span class="text-sm bg-green-300 text-green-800 font-bold py-1 px-2 rounded">
-                <i class="fas fa-check"></i>
+            <span class="text-sm bg-yellow-300 text-yellow-800 font-bold py-1 px-2 rounded">
+                <i class="fas fa-handshake"></i>
                 <span>Attending</span>
             </span>
         @endif

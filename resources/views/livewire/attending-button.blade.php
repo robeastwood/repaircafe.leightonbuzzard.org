@@ -2,17 +2,19 @@
     @if (Auth::user()->volunteer)
         <div class="relative inline-block">
             <label class="block font-medium text-sm text-gray-700" for="status">
-                Are you volunteering at this event?
+                Are you attending this event?
                 @error('status')
                     <span class="text-sm text-red-800">{{ $message }}</span>
                 @enderror
             </label>
-
             <select id="status" wire:model="status"
                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
                 <option value="notattending">Not Attending</option>
-                <option value="attending">Attending</option>
-                <option value="volunteering">Volunteering</option>
+                <option value="attending">Just Visiting</option>
+                <option value="helping">Volunteering (Helper)</option>
+                @if (Auth::user()->fixer)
+                    <option value="fixing">Volunteering (Fixing)</option>
+                @endif
             </select>
         </div>
     @else
