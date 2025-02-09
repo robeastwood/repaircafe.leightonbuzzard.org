@@ -27,7 +27,6 @@ class ItemFactory extends Factory
             "status" => $this->faker->randomElement(array_keys(Item::statusOptions())),
             "description" => $this->faker->words(3, true),
             "issue" => $this->faker->paragraph(),
-            "notes" => $this->faker->paragraph(),
             "powered" => $category->powered,
         ];
     }

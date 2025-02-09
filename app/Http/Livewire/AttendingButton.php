@@ -30,11 +30,19 @@ class AttendingButton extends Component
         if (
             $this->event
                 ->users()
+                ->wherePivot("fixer", true)
+                ->get()
+                ->contains($this->user)
+        ) {
+            $this->status = "fixing";
+        } elseif (
+            $this->event
+                ->users()
                 ->wherePivot("volunteer", true)
                 ->get()
                 ->contains($this->user)
         ) {
-            $this->status = "volunteering";
+            $this->status = "helping";
         } elseif ($this->event->users->contains($this->user)) {
             $this->status = "attending";
         }
@@ -50,18 +58,27 @@ class AttendingButton extends Component
         switch ($newStatus) {
             case "attending":
                 $this->event->users()->syncWithoutDetaching([
-                    $this->user->id => ["volunteer" => false],
+                    $this->user->id => ["volunteer" => false, "fixer" => false],
                 ]);
                 $this->status = "attending";
                 break;
-            case "volunteering":
+            case "helping":
                 if (!$this->user->volunteer) {
                     abort("400", "You are not a volunteer");
                 }
                 $this->event->users()->syncWithoutDetaching([
-                    $this->user->id => ["volunteer" => true],
+                    $this->user->id => ["volunteer" => true, "fixer" => false],
                 ]);
-                $this->status = "volunteering";
+                $this->status = "helping";
+                break;
+            case "fixing":
+                if (!$this->user->fixer) {
+                    abort("400", "You are not a fixer");
+                }
+                $this->event->users()->syncWithoutDetaching([
+                    $this->user->id => ["volunteer" => true, "fixer" => true],
+                ]);
+                $this->status = "fixing";
                 break;
             default:
                 $this->event->users()->detach(Auth::user());
