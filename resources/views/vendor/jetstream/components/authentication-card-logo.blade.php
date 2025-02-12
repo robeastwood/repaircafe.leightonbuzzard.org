@@ -1,5 +1,4 @@
 <a href="/">
-    <?xml version="1.0" encoding="UTF-8"?>
     <svg class="w-40 h-40" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
         <g transform="matrix(1 0 0 1 600.00008 600.00008)" id="WXlIKc8v_QSy9gQXR-Z_u">
