@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PolicyController;
+use App\Http\Livewire\ContactForm;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,8 @@ Route::get("/", function () {
 Route::get("/volunteer-policy", [PolicyController::class, "showPolicy"]);
 Route::get("/health-and-safety", [PolicyController::class, "showPolicy"]);
 Route::get("/repair-disclaimer", [PolicyController::class, "showPolicy"]);
+
+Route::get('/contact', ContactForm::class)->name('contact.page');
 
 // logged in users:
 Route::middleware([
