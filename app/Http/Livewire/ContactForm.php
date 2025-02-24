@@ -22,21 +22,20 @@ class ContactForm extends Component
 
     public function submit(): void
     {
-            $this->validate();
+        $this->validate();
 
-            $content = [
-                'name' => $this->name,
-                'email' => $this->email,
-                'subject' => $this->subject,
-                'message' => $this->message,
-            ];
+        $content = [
+            'name' => $this->name,
+            'email' => $this->email,
+            'subject' => $this->subject,
+            'message' => $this->message,
+        ];
 
-            Mail::to(config('app.email'))->queue(new ContactUsMail($content));
+        Mail::to(config('app.email_contact'))->queue(new ContactUsMail($content));
 
-            session()->flash('success', 'Your message has been sent successfully.');
+        session()->flash('success', 'Your message has been sent successfully.');
 
-            $this->reset();
-
+        $this->reset();
     }
 
     public function render()
@@ -44,4 +43,3 @@ class ContactForm extends Component
         return view('livewire.contact-form')->layout('layouts.guest');
     }
 }
-
