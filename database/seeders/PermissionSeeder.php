@@ -4,8 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
+/**
+ * This seeder is used to sync the permissions with the database.
+ * It is the only seeder that should be run in production environments, whenever the permissions are changed.
+ */
 class PermissionSeeder extends Seeder
 {
     /**
@@ -13,7 +16,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create permissions
+        // valid permissions
         $permissions = [
             'access-admin-panel',
             'item-check-in',
@@ -34,33 +37,35 @@ class PermissionSeeder extends Seeder
             'email-users',
             'email-newsletters',
             'manage-reports',
-            'view-reports',
+            'view-reportssddfs',
         ];
 
+        $created = 0;
+        $existing = 0;
+
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(
+            $permissionModel = Permission::firstOrCreate(
                 ['name' => $permission],
                 ['guard_name' => 'web']
             );
+
+            if ($permissionModel->wasRecentlyCreated) {
+                $this->command->info("Added new permission: {$permission}");
+                $created++;
+            } else {
+                $existing++;
+            }
         }
 
-        $this->command->info('Permissions created successfully.');
+        // remove any permissions that are in the db but not in the $permissions array
+        $orphaned = Permission::whereNotIn('name', $permissions)->get();
+        if ($orphaned->isNotEmpty()) {
+            foreach ($orphaned as $orphanedPermission) {
+                $this->command->warn("Deleted removed permission: {$orphanedPermission->name}");
+            }
+            $orphaned->each->delete();
+        }
 
-        // create admin role if not exists
-        $adminRole = Role::firstOrCreate(['name' => 'admin'], ['guard_name' => 'web']);
-        // all permissions
-        $adminRole->givePermissionTo($permissions);
-        $this->command->info('Admin role created successfully.');
-
-        // create fixer role if not exists
-        $fixerRole = Role::firstOrCreate(['name' => 'fixer'], ['guard_name' => 'web']);
-        $fixerRole->givePermissionTo(['update-item-status', 'add-skills', 'add-notes', 'can-fix']);
-        $this->command->info('Fixer role created successfully.');
-
-        // create volunteer role if not exists
-        $volunteerRole = Role::firstOrCreate(['name' => 'volunteer'], ['guard_name' => 'web']);
-        $volunteerRole->givePermissionTo(['item-check-in', 'update-item-status', 'add-notes', 'can-volunteer']);
-        $this->command->info('Volunteer role created successfully.');
-
+        $this->command->info("Permissions processed: {$created} created, {$existing} existing".($orphaned->isNotEmpty() ? ", {$orphaned->count()} deleted" : ''));
     }
 }
