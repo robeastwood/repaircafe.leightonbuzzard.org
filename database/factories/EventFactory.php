@@ -18,7 +18,7 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $starts_at = fake()->dateTimeThisYear(Carbon::now()->addMonth());
+        $starts_at = $this->faker->dateTimeThisYear(Carbon::now()->addMonth());
         $ends_at = Carbon::parse($starts_at)->addHours(rand(1, 8));
 
         return [

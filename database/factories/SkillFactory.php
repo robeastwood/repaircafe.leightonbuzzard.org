@@ -17,7 +17,7 @@ class SkillFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->randomElement([
+            'name' => $this->faker->unique()->randomElement([
                 'Electrical Repair',
                 'Computer Repair',
                 'Bicycle Repair',
@@ -34,7 +34,7 @@ class SkillFactory extends Factory
                 'Watch Repair',
                 'Mobile Phone Repair',
             ]),
-            'description' => fake()->sentence(),
+            'description' => $this->faker->sentence(),
         ];
     }
 }
