@@ -36,8 +36,8 @@ class PermissionSeeder extends Seeder
             'email-event-attendees',
             'email-users',
             'email-newsletters',
+            'view-reports',
             'manage-reports',
-            'view-reportssddfs',
         ];
 
         $created = 0;
