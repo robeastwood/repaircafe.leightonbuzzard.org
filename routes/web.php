@@ -1,63 +1,37 @@
 <?php
 
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PolicyController;
-use App\Http\Livewire\ContactForm;
-use App\Models\Event;
-use Carbon\Carbon;
+use App\Livewire\Settings\Appearance;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
-Route::get("/", function () {
-    $nextEvent = Event::where("ends_at", ">=", Carbon::now())
-        ->with("venue")
-        ->with("users")
-        ->withCount("items")
-        ->orderBy("ends_at")
-        ->first();
-    return view("welcome", ["nextEvent" => $nextEvent]);
-})->name('homepage');
-//Route::get("/events/{id}", "EventController@showEvent");
-Route::get("/volunteer-policy", [PolicyController::class, "showPolicy"]);
-Route::get("/health-and-safety", [PolicyController::class, "showPolicy"]);
-Route::get("/repair-disclaimer", [PolicyController::class, "showPolicy"]);
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::get('/contact', ContactForm::class)->name('contact.page');
+Route::middleware(['auth'])->group(function () {
+    Route::redirect('settings', 'settings/profile');
 
-// logged in users:
-Route::middleware([
-    "auth:sanctum",
-    config("jetstream.auth_session"),
-    "verified",
-])->group(function () {
-    Route::get("/dashboard", function () {
-        return view("dashboard");
-    })->name("dashboard");
-    Route::get("/events/{id}", [EventController::class, "show"])->name("event");
-    Route::get("/events", [EventController::class, "list"])->name("events");
-    Route::get("/items/{id}", [ItemController::class, "show"])->name("item");
-    // Route::get("/items", [ItemController::class, "myItems"])->name("items");
+    Route::get('settings/profile', Profile::class)->name('settings.profile');
+    Route::get('settings/password', Password::class)->name('settings.password');
+    Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+
+    Route::get('settings/two-factor', TwoFactor::class)
+        ->middleware(
+            when(
+                Features::canManageTwoFactorAuthentication()
+                    && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
+                ['password.confirm'],
+                [],
+            ),
+        )
+        ->name('two-factor.show');
 });
 
-// admins:
-Route::middleware([
-    "auth:sanctum",
-    config("jetstream.auth_session"),
-    "verified",
-    "isAdmin",
-])->group(function () {
-    Route::get("/admin", [AdminController::class, "show"])->name("admin");
-    Route::get("/events/{id}/checkin", [EventController::class, "checkin"])->name("checkin");
-});
+require __DIR__.'/auth.php';

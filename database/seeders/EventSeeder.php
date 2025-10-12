@@ -2,20 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Event;
 use App\Models\Item;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class EventSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         // create some events
         $events = \App\Models\Event::factory(20)->create();
@@ -27,7 +23,7 @@ class EventSeeder extends Seeder
                 ->get();
             foreach ($users as $user) {
                 $event->users()->attach($user, [
-                    "volunteer" => rand(0, 1),
+                    'volunteer' => rand(0, 1),
                 ]);
             }
         }

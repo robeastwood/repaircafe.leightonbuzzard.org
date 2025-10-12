@@ -4,94 +4,93 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    public static function statusOptions()
+    protected $fillable = ['user_id', 'category_id', 'status', 'description', 'issue', 'powered'];
+
+    public static function statusOptions(): array
+    {
+        return [
+            'broken' => 'Broken',
+            'assessed' => 'Assessed',
+            'fixed' => 'Fixed!',
+            'awaitingparts' => 'Awaiting Parts',
+            'unfixable' => 'Unfixable',
+        ];
+    }
+
+    public static function statusDetails($status): array
     {
         $statuses = [
-            "broken" => [
-                "display" => "Broken",
-                "colour" => "bg-gray-200 text-gray-800",
-                "icon" => "fas fa-heart-crack",
+            'broken' => [
+                'color' => 'gray',
+                'icon' => 'heroicon-o-exclamation-triangle',
             ],
-            "assessed" => [
-                "display" => "Assessed",
-                "colour" => "bg-blue-200 text-blue-800",
-                "icon" => "fas fa-magnifying-glass",
+            'assessed' => [
+                'color' => 'info',
+                'icon' => 'heroicon-o-magnifying-glass',
             ],
-            "fixed" => [
-                "display" => "Fixed!",
-                "colour" => "bg-green-200 text-green-800",
-                "icon" => "far fa-face-grin",
+            'fixed' => [
+                'color' => 'success',
+                'icon' => 'heroicon-o-face-smile',
             ],
-            "awaitingparts" => [
-                "display" => "Awaiting Parts",
-                "colour" => "bg-yellow-200 text-yellow-800",
-                "icon" => "far fa-hourglass",
+            'awaitingparts' => [
+                'color' => 'warning',
+                'icon' => 'heroicon-o-clock',
             ],
-            "unfixable" => [
-                "display" => "Unfixable",
-                "colour" => "bg-red-200 text-red-800",
-                "icon" => "fas fa-skull-crossbones",
+            'unfixable' => [
+                'color' => 'danger',
+                'icon' => 'heroicon-o-face-frown',
             ],
         ];
 
-        return $statuses;
+        return $statuses[$status] ?? [
+            'color' => 'gray',
+            'icon' => 'heroicon-o-question-mark-circle',
+        ];
     }
 
-    public static function powerOptions()
+    public static function powerOptions(): array
     {
-        return ["no", "mains", "batteries", "other", "unknown"];
+        return [
+            'no' => 'Not Powered',
+            'mains' => 'Mains',
+            'batteries' => 'Batteries',
+            'other' => 'Other',
+            'unknown' => 'Unknown',
+        ];
     }
 
-    /**
-     * The user this item belongs to, if set
-     */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * The category this item belongs to
-     */
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * the events this item is booked into
-     */
-    public function events()
+    public function events(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class)->withPivot(
-            "repairer_id",
-            "checkedin"
-        );
+        return $this->belongsToMany(Event::class)
+            ->withPivot('repairer_id', 'checkedin')
+            ->using(EventItem::class);
     }
 
-    /**
-     * the events where this item is checked in
-     */
-    public function checkedin()
+    public function checkedin(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class)->wherePivot(
-            "checkedin",
-            "<>",
-            null
-        );
+        return $this->belongsToMany(Event::class)->wherePivot('checkedin', true);
     }
 
-    /**
-     * the events this item is booked into
-     */
-    public function notes()
+    public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
     }

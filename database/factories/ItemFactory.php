@@ -22,12 +22,12 @@ class ItemFactory extends Factory
         $category = Category::all()->random();
 
         return [
-            "user_id" => User::all()->random()->id,
-            "category_id" => $category->id,
-            "status" => $this->faker->randomElement(array_keys(Item::statusOptions())),
-            "description" => $this->faker->words(3, true),
-            "issue" => $this->faker->paragraph(),
-            "powered" => $category->powered,
+            'user_id' => User::all()->random()->id,
+            'category_id' => $category->id,
+            'status' => $this->faker->randomElement(array_keys(Item::statusOptions())),
+            'description' => $this->faker->words(3, true),
+            'issue' => $this->faker->paragraph(),
+            'powered' => $category->powered,
         ];
     }
 
@@ -40,7 +40,7 @@ class ItemFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                "user_id" => null,
+                'user_id' => null,
             ];
         });
     }

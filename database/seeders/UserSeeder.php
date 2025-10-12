@@ -2,37 +2,48 @@
 
 namespace Database\Seeders;
 
-use App\Models\Skill;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
     /**
-     * Run the factory seeds.
-     *
-     * @return void
+     * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
-        // create an admin
-        User::factory()
-            ->isAdmin()
-            ->create([
-                "name" => "Test User",
-                "email" => "test@test.com",
+        // create admin user if not exists
+        $adminUser = User::firstOrCreate(
+            ['email' => 'test@test.com'], [
+                'name' => 'Test User',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
             ]);
-        // create guests
-        User::factory(20)->create();
+        // give admin role to admin user
+        $adminUser->assignRole('admin');
 
-        // create volunteers each with 5 random skills
-        $volunteers = User::factory(20)->isVolunteer()->create();
-        foreach ($volunteers as $volunteer) {
-            $skills = Skill::inRandomOrder()
-                ->limit(5)
-                ->get();
-            $volunteer->skills()->sync($skills);
-        }
+        // create fixer user if not exists
+        $fixerUser = User::firstOrCreate(
+            ['email' => 'fixer@test.com'], [
+                'name' => 'Fixer User',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+            ]);
+        // give fixer role to fixer user
+        $fixerUser->assignRole('fixer');
+
+        // create volunteer user if not exists
+        $volunteerUser = User::firstOrCreate(
+            ['email' => 'volunteer@test.com'], [
+                'name' => 'Volunteer User',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+            ]);
+        // give volunteer role to volunteer user
+        $volunteerUser->assignRole('volunteer');
+
+        // create 10 normal users
+        User::factory(10)->create();
     }
 }
