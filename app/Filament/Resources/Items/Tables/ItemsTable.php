@@ -19,19 +19,25 @@ class ItemsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable()
+                    ->toggleable()
+                    ->sortable(),
+                TextColumn::make('user.name')
+                    ->label('Owner')
+                    ->searchable()
+                    ->toggleable()
+                    ->sortable(),
                 TextColumn::make('description')
                     ->label('Description')
                     ->limit(50)
                     ->searchable()
                     ->toggleable(),
-                TextColumn::make('user.name')
-                    ->label('Owner')
-                    ->searchable()
-                    ->sortable(),
                 TextColumn::make('category.name')
                     ->label('Category')
-                    ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('status')
                     ->label('Status')
                     ->formatStateUsing(fn ($state) => Item::statusOptions()[$state] ?? $state)

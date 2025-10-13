@@ -66,20 +66,35 @@ class ItemsRelationManager extends RelationManager
             ->defaultSort('created_at', 'desc')
             ->paginated(false)
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->toggleable()
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('user.name')
+                    ->label('Owner')
+                    ->toggleable()
+                    ->url(fn ($record) => $record->user ? UserResource::getUrl('view', ['record' => $record->user]) : null)
+                    ->color('primary'),
+                TextColumn::make('user.email')
+                    ->label('Owner Email')
+                    ->searchable()
+                    ->copyable()
+                    ->color('secondary')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('description')
                     ->label('Item Description')
                     ->searchable()
+                    ->toggleable()
                     ->url(fn ($record) => ItemResource::getUrl('view', ['record' => $record]))
                     ->color('primary')
                     ->wrap(),
-                TextColumn::make('user.name')
-                    ->label('Owner')
-                    ->url(fn ($record) => $record->user ? UserResource::getUrl('view', ['record' => $record->user]) : null)
-                    ->color('primary'),
                 TextColumn::make('category.name')
-                    ->label('Category'),
+                    ->label('Category')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('status')
                     ->label('Status')
+                    ->toggleable()
                     ->badge()
                     ->colors([
                         'danger' => 'broken',
@@ -87,7 +102,8 @@ class ItemsRelationManager extends RelationManager
                         'success' => 'fixed',
                         'info' => 'awaitingparts',
                         'gray' => 'unfixable',
-                    ]),
+                    ])
+                    ->toggleable(),
                 IconColumn::make('checkedin')
                     ->label('Checked In')
                     ->getStateUsing(fn ($record) => $record->pivot->checkedin !== null)
@@ -95,9 +111,11 @@ class ItemsRelationManager extends RelationManager
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle')
                     ->trueColor('success')
+                    ->toggleable()
                     ->falseColor('gray'),
                 TextColumn::make('repairer_id')
                     ->label('Repairer')
+                    ->toggleable()
                     ->getStateUsing(function ($record) {
                         if (! $record->pivot->repairer_id) {
                             return null;
