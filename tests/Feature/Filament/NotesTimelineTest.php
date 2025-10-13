@@ -184,7 +184,11 @@ describe('Notes Timeline - Permissions', function () {
 
         Livewire::actingAs($regularUser)
             ->test(NotesTimeline::class, ['item' => $item])
-            ->assertSee("You don't have permission to add notes to this item.", false);
+            ->assertDontSee('Add Note')
+            ->set('data.note', 'Trying to add a note')
+            ->set('data.status_new', 'broken')
+            ->call('addNote')
+            ->assertNotified();
 
         expect(Note::where('item_id', $item->id)->count())->toBe(0);
     });
