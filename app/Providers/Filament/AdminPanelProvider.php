@@ -7,7 +7,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
+use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -25,23 +25,32 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->spa()
             ->default()
             ->id('admin')
             ->path('admin')
             ->sidebarCollapsibleOnDesktop(true)
+            ->navigationItems([
+                NavigationItem::make('Repair Cafe Homepage')
+                    ->url(fn (): string => route('home'))
+                    ->icon('heroicon-o-home')
+                    ->sort(-3),
+            ])
             ->userMenuItems([
                 Action::make('Account Settings')
                     ->url(fn (): string => route('settings.profile'))
                     ->icon('heroicon-o-cog-6-tooth'),
+
+                Action::make('User Dashboard')
+                    ->url(fn (): string => url('/dashboard'))
+                    ->icon('heroicon-o-user'),
             ])
             ->colors([
                 'primary' => Color::Amber,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
-            ->pages([
-                Dashboard::class,
-            ])
+            ->pages([])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
