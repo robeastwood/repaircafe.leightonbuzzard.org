@@ -14,7 +14,7 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group class="grid">
                     <flux:navlist.item icon="arrow-left" :href="url()->previous()" wire:navigate>{{ __('Back') }}</flux:navlist.item>
-                    <flux:navlist.item icon="arrow-left" :href="route('filament.app.pages.dashboard')" wire:navigate>{{ __('Back to app') }}</flux:navlist.item>
+                    <flux:navlist.item icon="arrow-left" :href="route('filament.dashboard.pages.dashboard')" wire:navigate>{{ __('Back to app') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

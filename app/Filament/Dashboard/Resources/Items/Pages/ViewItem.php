@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\App\Resources\Items\Pages;
+namespace App\Filament\Dashboard\Resources\Items\Pages;
 
-use App\Filament\App\Resources\Items\ItemResource;
+use App\Filament\Dashboard\Resources\Items\ItemResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;

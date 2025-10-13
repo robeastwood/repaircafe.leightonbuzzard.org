@@ -37,8 +37,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         if ($panel->getId() === 'admin') {
             return $this->can('access-admin-panel') && $this->hasVerifiedEmail();
         }
-        // App Panel
-        if ($panel->getId() === 'app') {
+        // Dashboard Panel
+        if ($panel->getId() === 'dashboard') {
             return $this->hasVerifiedEmail();
         }
 

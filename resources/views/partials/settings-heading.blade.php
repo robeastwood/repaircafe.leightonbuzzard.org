@@ -2,7 +2,7 @@
     <flux:button
         variant="ghost"
         icon="arrow-left"
-        :href="route('filament.app.pages.dashboard')"
+        :href="route('filament.dashboard.pages.dashboard')"
         wire:navigate
         class="mb-4"
     >

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\App\Resources\Items;
+namespace App\Filament\Dashboard\Resources\Items;
 
-use App\Filament\App\Resources\Items\Pages\CreateItem;
-use App\Filament\App\Resources\Items\Pages\ListItems;
-use App\Filament\App\Resources\Items\Pages\ViewItem;
-use App\Filament\App\Resources\Items\Schemas\ItemForm;
-use App\Filament\App\Resources\Items\Schemas\ItemInfolist;
-use App\Filament\App\Resources\Items\Tables\ItemsTable;
+use App\Filament\Dashboard\Resources\Items\Pages\CreateItem;
+use App\Filament\Dashboard\Resources\Items\Pages\ListItems;
+use App\Filament\Dashboard\Resources\Items\Pages\ViewItem;
+use App\Filament\Dashboard\Resources\Items\Schemas\ItemForm;
+use App\Filament\Dashboard\Resources\Items\Schemas\ItemInfolist;
+use App\Filament\Dashboard\Resources\Items\Tables\ItemsTable;
 use App\Models\Item;
 use BackedEnum;
 use Filament\Resources\Resource;

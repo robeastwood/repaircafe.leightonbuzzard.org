@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\App\Resources\Items\Tables;
+namespace App\Filament\Dashboard\Resources\Items\Tables;
 
-use App\Filament\App\Resources\Items\ItemResource;
+use App\Filament\Dashboard\Resources\Items\ItemResource;
 use App\Models\Item;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;

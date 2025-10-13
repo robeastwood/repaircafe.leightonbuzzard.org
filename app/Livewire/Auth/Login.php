@@ -52,7 +52,7 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(route('filament.dashboard.pages.dashboard'), navigate: true);
     }
 
     /**

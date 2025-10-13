@@ -71,48 +71,48 @@ describe('Admin Panel Access', function () {
     });
 });
 
-describe('App Panel Access', function () {
-    test('users with verified email can access app panel', function () {
+describe('Dashboard Panel Access', function () {
+    test('users with verified email can access dashboard panel', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
 
-        Filament::setCurrentPanel('app');
+        Filament::setCurrentPanel('dashboard');
         $panel = Filament::getCurrentPanel();
 
         expect($user->canAccessPanel($panel))->toBeTrue();
     });
 
-    test('users with unverified email cannot access app panel', function () {
+    test('users with unverified email cannot access dashboard panel', function () {
         $user = User::factory()->create(['email_verified_at' => null]);
 
-        Filament::setCurrentPanel('app');
+        Filament::setCurrentPanel('dashboard');
         $panel = Filament::getCurrentPanel();
 
         expect($user->canAccessPanel($panel))->toBeFalse();
     });
 
-    test('users do not need special permissions to access app panel', function () {
+    test('users do not need special permissions to access dashboard panel', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
         // No permissions granted
 
-        Filament::setCurrentPanel('app');
+        Filament::setCurrentPanel('dashboard');
         $panel = Filament::getCurrentPanel();
 
         expect($user->canAccessPanel($panel))->toBeTrue();
     });
 
-    test('authenticated users with verified email can access app panel routes', function () {
+    test('authenticated users with verified email can access dashboard panel routes', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
 
         $this->actingAs($user)
-            ->get('/app')
+            ->get('/dashboard')
             ->assertSuccessful();
     });
 
-    test('authenticated users with unverified email are redirected from app panel', function () {
+    test('authenticated users with unverified email are redirected from dashboard panel', function () {
         $user = User::factory()->create(['email_verified_at' => null]);
 
         $this->actingAs($user)
-            ->get('/app')
+            ->get('/dashboard')
             ->assertForbidden();
     });
 });
@@ -134,8 +134,8 @@ describe('Panel Access Edge Cases', function () {
             ->assertRedirect('/login');
     });
 
-    test('guests are redirected from app panel', function () {
-        $this->get('/app')
+    test('guests are redirected from dashboard panel', function () {
+        $this->get('/dashboard')
             ->assertRedirect('/login');
     });
 });
