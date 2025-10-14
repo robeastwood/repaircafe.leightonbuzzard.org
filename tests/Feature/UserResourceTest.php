@@ -617,3 +617,58 @@ describe('Delete User', function () {
         expect(User::find($user2->id))->toBeNull();
     });
 });
+
+describe('Items Relation Manager', function () {
+    test('can render items relation manager on view user page', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-users']);
+
+        $targetUser = User::factory()->create(['email_verified_at' => now()]);
+
+        Livewire::actingAs($user)
+            ->test(ViewUser::class, ['record' => $targetUser->id])
+            ->assertSuccessful();
+    });
+
+    test('can see items belonging to user in relation manager', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-users']);
+
+        $targetUser = User::factory()->create(['email_verified_at' => now()]);
+        $category = \App\Models\Category::factory()->create();
+        $items = \App\Models\Item::factory()->count(3)->create([
+            'user_id' => $targetUser->id,
+            'category_id' => $category->id,
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Filament\Resources\Users\RelationManagers\ItemsRelationManager::class, [
+                'ownerRecord' => $targetUser,
+                'pageClass' => ViewUser::class,
+            ])
+            ->assertCanSeeTableRecords($items);
+    });
+
+    test('items relation manager shows correct columns', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-users']);
+
+        $targetUser = User::factory()->create(['email_verified_at' => now()]);
+        $category = \App\Models\Category::factory()->create();
+        $item = \App\Models\Item::factory()->create([
+            'user_id' => $targetUser->id,
+            'category_id' => $category->id,
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(\App\Filament\Resources\Users\RelationManagers\ItemsRelationManager::class, [
+                'ownerRecord' => $targetUser,
+                'pageClass' => ViewUser::class,
+            ])
+            ->assertCanSeeTableRecords([$item])
+            ->assertTableColumnExists('id')
+            ->assertTableColumnExists('description')
+            ->assertTableColumnExists('category.name')
+            ->assertTableColumnExists('status');
+    });
+});
