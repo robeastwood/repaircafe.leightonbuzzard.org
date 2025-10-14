@@ -469,9 +469,9 @@ describe('Items Relation Manager', function () {
                 'pageClass' => ViewEvent::class,
             ])
             ->assertSuccessful()
+            ->assertSee($item->id)
             ->assertSee('Broken toaster')
-            ->assertSee('John Doe')
-            ->assertSee('Electronics');
+            ->assertSee('John Doe');
     });
 
     test('can filter items by status', function () {
