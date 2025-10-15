@@ -117,7 +117,7 @@
 
                 </div>
 
-                <!-- Contact Form Placeholder -->
+                <!-- Contact Form -->
                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded-2xl backdrop-blur-sm bg-white/90 p-8">
                     <div class="flex items-center mb-6">
                         <div class="text-white p-3 inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-purple-500 mr-4">
@@ -128,23 +128,9 @@
                         </h2>
                     </div>
 
-                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                        <div class="flex items-start">
-                            <div class="text-blue-600 mr-4 mt-1">
-                                <i class="fas fa-info-circle text-xl"></i>
-                            </div>
-                            <div class="text-blue-700">
-                                <p class="font-semibold mb-2">Contact Form Coming Soon</p>
-                                <p>
-                                    We're working on a contact form for this page. In the meantime, please feel free to reach out to us via email or Facebook using the contact information above.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 text-gray-700">
-                        <h3 class="text-xl font-semibold mb-4">What can we help you with?</h3>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
+                    <div class="mb-6 text-gray-700">
+                        <h3 class="text-lg font-semibold mb-3">What can we help you with?</h3>
+                        <ul class="list-disc list-inside space-y-2 pl-4 text-sm">
                             <li>Questions about bringing items for repair</li>
                             <li>Volunteering opportunities</li>
                             <li>Event dates and locations</li>
@@ -153,11 +139,7 @@
                         </ul>
                     </div>
 
-                    <div class="mt-8 text-center">
-                        <a href="{{ url('/') }}" class="inline-block px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors">
-                            Back to Home
-                        </a>
-                    </div>
+                    @livewire('contact-form')
                 </div>
 
             </div>
