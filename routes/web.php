@@ -11,9 +11,21 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-// Route::view('dashboard', 'dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
+Route::get('/more-information', function () {
+    return view('more-information');
+})->name('more-information');
+
+Route::get('/policies', function () {
+    return view('policies');
+})->name('policies');
+
+Route::get('/repair-disclaimer', function () {
+    return view('repair-disclaimer');
+})->name('repair-disclaimer');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

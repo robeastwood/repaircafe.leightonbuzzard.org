@@ -7,6 +7,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -31,11 +32,59 @@ class DashboardPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->navigationGroups([
+                NavigationGroup::make('Repair Cafe LB Info')
+                    ->collapsed(),
+                NavigationGroup::make('Other Resources')
+                    ->icon('heroicon-o-globe-alt')
+                    ->collapsed(),
+            ])
             ->navigationItems([
+
+                // Repair Cafe LB Info
                 NavigationItem::make('Repair Cafe Homepage')
                     ->url(fn (): string => route('home'))
                     ->icon('heroicon-o-home')
-                    ->sort(-2),
+                    ->group('Repair Cafe LB Info'),
+                NavigationItem::make('More Information')
+                    ->url(fn (): string => route('more-information'))
+                    ->icon('heroicon-o-information-circle')
+                    ->group('Repair Cafe LB Info'),
+                NavigationItem::make('Policies')
+                    ->url(fn (): string => route('policies'))
+                    ->icon('heroicon-o-document-text')
+                    ->group('Repair Cafe LB Info'),
+                NavigationItem::make('Repair Disclaimer')
+                    ->url(fn (): string => route('repair-disclaimer'))
+                    ->icon('heroicon-o-exclamation-triangle')
+                    ->group('Repair Cafe LB Info'),
+                NavigationItem::make('Contact Us')
+                    ->url(fn (): string => route('contact'))
+                    ->icon('heroicon-o-envelope')
+                    ->group('Repair Cafe LB Info'),
+
+                // Other Resources
+                NavigationItem::make('Totally Leighton Buzzard')
+                    ->url('https://totallylb.wordpress.com/')
+                    ->group('Other Resources')
+                    ->openUrlInNewTab(),
+                NavigationItem::make('Repair Cafe International')
+                    ->url('https://www.repaircafe.org/en/')
+                    ->group('Other Resources')
+                    ->openUrlInNewTab(),
+                NavigationItem::make('Restarters Group')
+                    ->url('https://restarters.net/group/view/821')
+                    ->group('Other Resources')
+                    ->openUrlInNewTab(),
+                NavigationItem::make('iFixit Repair Guides')
+                    ->url('https://www.ifixit.com/Guide')
+                    ->group('Other Resources')
+                    ->openUrlInNewTab(),
+                NavigationItem::make('Right to Repair')
+                    ->url('https://repair.eu/')
+                    ->group('Other Resources')
+                    ->openUrlInNewTab(),
+
             ])
             ->discoverResources(in: app_path('Filament/Dashboard/Resources'), for: 'App\Filament\Dashboard\Resources')
             ->discoverPages(in: app_path('Filament/Dashboard/Pages'), for: 'App\Filament\Dashboard\Pages')
