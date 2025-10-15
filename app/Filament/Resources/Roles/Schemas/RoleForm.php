@@ -19,7 +19,16 @@ class RoleForm
                     ->maxLength(255),
                 CheckboxList::make('permissions')
                     ->relationship('permissions', 'name')
-                    ->options(fn () => Permission::all()->pluck('name', 'id'))
+                    ->options(function () {
+                        $permissions = Permission::all();
+
+                        // Hide super-admin permission from users who don't have it
+                        if (! auth()->user()?->can('super-admin')) {
+                            $permissions = $permissions->reject(fn ($permission) => $permission->name === 'super-admin');
+                        }
+
+                        return $permissions->pluck('name', 'id');
+                    })
                     ->label('Permissions')
                     ->columns(2)
                     ->columnSpanFull(),

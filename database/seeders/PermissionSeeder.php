@@ -38,6 +38,7 @@ class PermissionSeeder extends Seeder
             'email-newsletters',
             'view-reports',
             'manage-reports',
+            'super-admin',
         ];
 
         $created = 0;

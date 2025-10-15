@@ -49,12 +49,12 @@ class EventResource extends Resource
 
     public static function canForceDelete($record): bool
     {
-        return auth()->user()?->can('manage-events') ?? false;
+        return auth()->user()?->can('super-admin') ?? false;
     }
 
     public static function canRestore($record): bool
     {
-        return auth()->user()?->can('manage-events') ?? false;
+        return auth()->user()?->can('super-admin') ?? false;
     }
 
     public static function form(Schema $schema): Schema
@@ -85,9 +85,15 @@ class EventResource extends Resource
 
     public static function getRecordRouteBindingEloquentQuery(): Builder
     {
-        return parent::getRecordRouteBindingEloquentQuery()
-            ->withoutGlobalScopes([
+        $query = parent::getRecordRouteBindingEloquentQuery();
+
+        // Only super-admins can access soft-deleted records directly by ID
+        if (auth()->check() && auth()->user()->can('super-admin')) {
+            $query->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+        }
+
+        return $query;
     }
 }

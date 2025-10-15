@@ -329,3 +329,101 @@ describe('Role Relationships', function () {
         expect($role->hasPermissionTo('manage-events'))->toBeTrue();
     });
 });
+
+describe('Super Admin Permission Visibility', function () {
+    beforeEach(function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+    });
+
+    test('super-admin permission is visible to users with super-admin permission when creating role', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-permissions', 'super-admin']);
+
+        $component = Livewire::actingAs($user)
+            ->test(CreateRole::class);
+
+        $formData = $component->get('data');
+        $permissionOptions = $component->get('getFormStatePath');
+
+        // Get the actual form component to check available options
+        $form = $component->instance()->form;
+        $permissionsComponent = $form->getComponent('permissions');
+        $options = $permissionsComponent->getOptions();
+
+        $superAdminPermission = Permission::where('name', 'super-admin')->first();
+        expect($options)->toHaveKey($superAdminPermission->id);
+    });
+
+    test('super-admin permission is hidden from users without super-admin permission when creating role', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-permissions']);
+
+        $component = Livewire::actingAs($user)
+            ->test(CreateRole::class);
+
+        // Get the actual form component to check available options
+        $form = $component->instance()->form;
+        $permissionsComponent = $form->getComponent('permissions');
+        $options = $permissionsComponent->getOptions();
+
+        $superAdminPermission = Permission::where('name', 'super-admin')->first();
+        expect($options)->not->toHaveKey($superAdminPermission->id);
+    });
+
+    test('super-admin permission is visible to users with super-admin permission when editing role', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-permissions', 'super-admin']);
+
+        $role = Role::create(['name' => 'test-role', 'guard_name' => 'web']);
+
+        $component = Livewire::actingAs($user)
+            ->test(EditRole::class, ['record' => $role->id]);
+
+        // Get the actual form component to check available options
+        $form = $component->instance()->form;
+        $permissionsComponent = $form->getComponent('permissions');
+        $options = $permissionsComponent->getOptions();
+
+        $superAdminPermission = Permission::where('name', 'super-admin')->first();
+        expect($options)->toHaveKey($superAdminPermission->id);
+    });
+
+    test('super-admin permission is hidden from users without super-admin permission when editing role', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-permissions']);
+
+        $role = Role::create(['name' => 'test-role', 'guard_name' => 'web']);
+
+        $component = Livewire::actingAs($user)
+            ->test(EditRole::class, ['record' => $role->id]);
+
+        // Get the actual form component to check available options
+        $form = $component->instance()->form;
+        $permissionsComponent = $form->getComponent('permissions');
+        $options = $permissionsComponent->getOptions();
+
+        $superAdminPermission = Permission::where('name', 'super-admin')->first();
+        expect($options)->not->toHaveKey($superAdminPermission->id);
+    });
+
+    test('users with super-admin permission can create roles with super-admin permission', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $user->givePermissionTo(['access-admin-panel', 'manage-permissions', 'super-admin']);
+
+        $superAdminPermission = Permission::where('name', 'super-admin')->first();
+
+        Livewire::actingAs($user)
+            ->test(CreateRole::class)
+            ->fillForm([
+                'name' => 'new-super-admin-role',
+                'permissions' => [$superAdminPermission->id],
+            ])
+            ->call('create')
+            ->assertHasNoFormErrors();
+
+        // The role should be created with the super-admin permission
+        $role = Role::where('name', 'new-super-admin-role')->first();
+        expect($role)->not->toBeNull();
+        expect($role->hasPermissionTo('super-admin'))->toBeTrue();
+    });
+});

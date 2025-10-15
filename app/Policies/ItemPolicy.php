@@ -20,6 +20,11 @@ class ItemPolicy
      */
     public function view(User $user, Item $item): bool
     {
+        // Non-super-admins cannot view soft-deleted items
+        if ($item->trashed() && ! $user->can('super-admin')) {
+            return false;
+        }
+
         return true;
     }
 
@@ -52,7 +57,8 @@ class ItemPolicy
      */
     public function restore(User $user, Item $item): bool
     {
-        return $item->user_id === $user->id || $user->can('manage-items');
+        // Only super-admins can restore soft-deleted items
+        return $user->can('super-admin');
     }
 
     /**
@@ -60,6 +66,7 @@ class ItemPolicy
      */
     public function forceDelete(User $user, Item $item): bool
     {
-        return $item->user_id === $user->id || $user->can('manage-items');
+        // Only super-admins can force delete items
+        return $user->can('super-admin');
     }
 }

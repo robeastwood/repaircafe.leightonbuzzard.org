@@ -20,6 +20,11 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category): bool
     {
+        // Non-super-admins cannot view soft-deleted categories
+        if ($category->trashed() && ! $user->can('super-admin')) {
+            return false;
+        }
+
         return $user->can('manage-categories');
     }
 
@@ -52,7 +57,8 @@ class CategoryPolicy
      */
     public function restore(User $user, Category $category): bool
     {
-        return $user->can('manage-categories');
+        // Only super-admins can restore soft-deleted categories
+        return $user->can('super-admin');
     }
 
     /**
@@ -60,6 +66,7 @@ class CategoryPolicy
      */
     public function forceDelete(User $user, Category $category): bool
     {
-        return $user->can('manage-categories');
+        // Only super-admins can force delete categories
+        return $user->can('super-admin');
     }
 }

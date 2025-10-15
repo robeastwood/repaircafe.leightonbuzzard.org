@@ -20,6 +20,11 @@ class VenuePolicy
      */
     public function view(User $user, Venue $venue): bool
     {
+        // Non-super-admins cannot view soft-deleted venues
+        if ($venue->trashed() && ! $user->can('super-admin')) {
+            return false;
+        }
+
         return $user->can('manage-venues');
     }
 
@@ -52,7 +57,8 @@ class VenuePolicy
      */
     public function restore(User $user, Venue $venue): bool
     {
-        return $user->can('manage-venues');
+        // Only super-admins can restore soft-deleted venues
+        return $user->can('super-admin');
     }
 
     /**
@@ -60,6 +66,7 @@ class VenuePolicy
      */
     public function forceDelete(User $user, Venue $venue): bool
     {
-        return $user->can('manage-venues');
+        // Only super-admins can force delete venues
+        return $user->can('super-admin');
     }
 }

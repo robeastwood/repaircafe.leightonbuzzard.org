@@ -20,6 +20,11 @@ class EventPolicy
      */
     public function view(User $user, Event $event): bool
     {
+        // Non-super-admins cannot view soft-deleted events
+        if ($event->trashed() && ! $user->can('super-admin')) {
+            return false;
+        }
+
         return $user->can('manage-events');
     }
 
@@ -52,7 +57,8 @@ class EventPolicy
      */
     public function restore(User $user, Event $event): bool
     {
-        return $user->can('manage-events');
+        // Only super-admins can restore soft-deleted events
+        return $user->can('super-admin');
     }
 
     /**
@@ -60,6 +66,7 @@ class EventPolicy
      */
     public function forceDelete(User $user, Event $event): bool
     {
-        return $user->can('manage-events');
+        // Only super-admins can force delete events
+        return $user->can('super-admin');
     }
 }

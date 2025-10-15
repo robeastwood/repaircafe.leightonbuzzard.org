@@ -57,9 +57,15 @@ class CategoryResource extends Resource
 
     public static function getRecordRouteBindingEloquentQuery(): Builder
     {
-        return parent::getRecordRouteBindingEloquentQuery()
-            ->withoutGlobalScopes([
+        $query = parent::getRecordRouteBindingEloquentQuery();
+
+        // Only super-admins can access soft-deleted records directly by ID
+        if (auth()->check() && auth()->user()->can('super-admin')) {
+            $query->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+        }
+
+        return $query;
     }
 }
