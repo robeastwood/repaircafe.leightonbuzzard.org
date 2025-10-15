@@ -279,10 +279,15 @@
                     <div>
                         <h3 class="text-2xl font-semibold mb-4 text-gray-800 flex items-start">
                             <i class="fas fa-wrench text-gray-400 mr-4 mt-1"></i>
-                            <span>Can I become a volunteer repairer?</span>
+                            <span>Can I volunteer as a repairer?</span>
                         </h3>
                         <p class="text-gray-600 leading-relaxed pl-10">
-                            Absolutely! We're always looking for people with repair skills to join our team. Whether you're a professional or an experienced hobbyist, if you have skills in electronics, mechanics, textiles, or general repairs, we'd love to hear from you. You don't need to commit to every session - even helping out occasionally makes a big difference. It's a great way to share your knowledge, meet like-minded people, and contribute to reducing waste in our community. Please register on our website and let us know what skills you can donate, or contact us for more information.
+                            Absolutely! We're always looking for people with repair skills to join our team. Whether you're a professional or an experienced hobbyist, if you have skills in electronics, mechanics, textiles, or general repairs, we'd love to hear from you. You don't need to commit to every session - even helping out occasionally makes a big difference. It's a great way to share your knowledge, meet like-minded people, and contribute to reducing waste in our community.
+                            @auth
+                                Please update your <a href="{{ route('settings.profile') }}" class="text-blue-600 underline hover:text-blue-800">profile</a> to register as a repairer and let us know what skills you can offer, or <a href="{{ route('contact') }}" class="text-blue-600 underline hover:text-blue-800">contact us</a> for more information.
+                            @else
+                                Please <a href="{{ route('register') }}" class="text-blue-600 underline hover:text-blue-800">register</a> or <a href="{{ route('login') }}" class="text-blue-600 underline hover:text-blue-800">login</a> and let us know what skills you can donate, or contact us for more information.
+                            @endauth
                         </p>
                     </div>
                 </div>

@@ -92,10 +92,10 @@
                             <div class="w-full md:w-6/12 px-4 ml-auto">
                                 <span class="block uppercase text-gray-600 text-sm font-semibold mb-2">Find out more</span>
                                 <ul class="list-unstyled [&>li>a]:text-gray-700 [&>li>a]:hover:text-gray-900 [&>li>a]:font-semibold [&>li>a]:block [&>li>a]:pb-2 [&>li>a]:text-sm">
-                                    <li><a href="{{ route('policies') }}">Policies</a></li>
-                                    <li><a href="{{ route('repair-disclaimer') }}">Repair Disclaimer</a></li>
-                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                     <li><a href="{{ route('more-information') }}">More Information</a></li>
+                                    <li><a href="{{ route('repair-disclaimer') }}">Repair Disclaimer</a></li>                                    
+                                    <li><a href="{{ route('policies') }}">Policies</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="w-full md:w-6/12 px-4">

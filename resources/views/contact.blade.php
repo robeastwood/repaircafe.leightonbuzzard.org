@@ -12,7 +12,7 @@
                         Contact Us
                     </h1>
                     <p class="mt-4 text-lg text-gray-300">
-                        Get in touch with our team
+                        Get in touch with the organisers
                     </p>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                                     Email
                                 </h3>
                                 <p class="text-gray-600 pl-9">
-                                    <a href="mailto:info@repaircafe-lb.org" class="hover:text-blue-600">info@repaircafe-lb.org</a>
+                                    <a href="mailto:repaircafe@leightonbuzzard.org" class="hover:text-blue-600">repaircafe@leightonbuzzard.org</a>
                                 </p>
                             </div>
 
@@ -65,7 +65,7 @@
                                     Location
                                 </h3>
                                 <p class="text-gray-600 pl-9">
-                                    Details of our venue will be provided here
+                                    Come say hello at one of our events!<br/>Check the details of each event to find out where it's being held
                                 </p>
                             </div>
                         </div>
@@ -94,15 +94,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('policies') }}" class="flex items-center text-blue-600 hover:text-blue-800">
-                                        <i class="fas fa-file-alt mr-3"></i>
-                                        Our Policies
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="{{ route('repair-disclaimer') }}" class="flex items-center text-blue-600 hover:text-blue-800">
                                         <i class="fas fa-exclamation-triangle mr-3"></i>
                                         Repair Disclaimer
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('policies') }}" class="flex items-center text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-file-alt mr-3"></i>
+                                        Our Policies
                                     </a>
                                 </li>
                                 <li>
