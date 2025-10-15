@@ -71,6 +71,13 @@ class ItemsRelationManager extends RelationManager
                     ->toggleable()
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('description')
+                    ->label('Item Description')
+                    ->searchable()
+                    ->toggleable()
+                    ->url(fn ($record) => ItemResource::getUrl('view', ['record' => $record]))
+                    ->color('primary')
+                    ->wrap(),
                 TextColumn::make('user.name')
                     ->label('Owner')
                     ->toggleable()
@@ -82,13 +89,6 @@ class ItemsRelationManager extends RelationManager
                     ->copyable()
                     ->color('secondary')
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('description')
-                    ->label('Item Description')
-                    ->searchable()
-                    ->toggleable()
-                    ->url(fn ($record) => ItemResource::getUrl('view', ['record' => $record]))
-                    ->color('primary')
-                    ->wrap(),
                 TextColumn::make('category.name')
                     ->label('Category')
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -186,17 +186,23 @@ class ItemsRelationManager extends RelationManager
                         ->searchable()
                         ->native(false)
                         ->getSearchResultsUsing(function (string $search) {
-                            return \App\Models\Item::where('description', 'like', "%{$search}%")
+                            return \App\Models\Item::where('id', $search)
+                                ->orWhere('description', 'like', "%{$search}%")
+                                ->orWhere('issue', 'like', "%{$search}%")
                                 ->orWhereHas('user', function ($query) use ($search) {
                                     $query->where('name', 'like', "%{$search}%");
                                 })
                                 ->limit(50)
                                 ->get()
                                 ->mapWithKeys(fn ($item) => [
-                                    $item->id => $item->description.' - '.$item->user?->name,
+                                    $item->id => "#{$item->id} - {$item->description} - {$item->user?->name}",
                                 ]);
                         })
-                        ->getOptionLabelUsing(fn ($value) => \App\Models\Item::find($value)?->description))
+                        ->getOptionLabelUsing(function ($value) {
+                            $item = \App\Models\Item::find($value);
+
+                            return $item ? "#{$item->id} - {$item->description}" : null;
+                        }))
                     ->failureNotificationTitle('Failed to book item')
                     ->before(function (AttachAction $action, array $data) {
                         $recordId = $data['recordId'] ?? null;

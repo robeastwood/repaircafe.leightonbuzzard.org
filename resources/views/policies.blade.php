@@ -60,12 +60,11 @@
                         <h3 class="text-xl font-semibold text-gray-800 mt-6">Who we are</h3>
                         <p class="leading-relaxed">
                             Totally Leighton Buzzard (including the Repair Cafe Leighton Buzzard)<br>
-                            Email: totallylocallyleightonbuzzard@outlook.com
                         </p>
 
                         <h3 class="text-xl font-semibold text-gray-800 mt-6">When and what information we collect</h3>
                         <p class="leading-relaxed">
-                            You provide personal information such as your name and email address when you either email, make an online enquiry or booking to attend one of our Repair Café events or one of our other community events such as Fun Palaces.
+                            You provide personal information such as your name and email address when you either email, make an online enquiry or register to attend one of our Repair Café events or one of our other community events.
                         </p>
                         <p class="leading-relaxed">
                             We also collect personal information if you want to become a volunteer.
@@ -83,7 +82,7 @@
                             <li>To comply with legal obligations</li>
                         </ul>
                         <p class="leading-relaxed">
-                            Your information may be stored securely on a third party website (ie Google Drive) for administration purposes, such as issuing of a newsletter or to advise you of group activities.
+                            Your information may be stored securely on a third party website (eg Google Drive) for administration purposes, such as issuing of a newsletter or to advise you of group activities.
                         </p>
                         <p class="leading-relaxed">
                             Your information is never shared or passed on to any other third party groups, organisations or individuals without your consent.
