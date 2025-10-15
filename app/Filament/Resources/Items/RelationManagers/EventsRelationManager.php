@@ -10,10 +10,6 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DetachAction;
 use Filament\Actions\DetachBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
@@ -100,33 +96,52 @@ class EventsRelationManager extends RelationManager
             ])
             ->headerActions([
                 AttachAction::make()
-                    ->label('Book into event')
+                    ->label('Book')
                     ->modalHeading('Book into Event')
                     ->modalDescription('Select an event to book this item into')
+                    ->modalSubmitActionLabel('Book')
                     ->attachAnother(false)
                     ->recordSelect(fn (Select $select) => $select
                         ->placeholder('Select an event')
                         ->searchable(false)
                         ->native(false)
                         ->options(function () {
-                            return \App\Models\Event::orderBy('starts_at', 'asc')
+                            $bookedEventIds = $this->getOwnerRecord()->events()->pluck('events.id')->toArray();
+
+                            return \App\Models\Event::whereDate('starts_at', '>=', now()->startOfDay())
+                                ->orderBy('starts_at', 'asc')
                                 ->get()
                                 ->mapWithKeys(fn ($event) => [
-                                    $event->id => $event->starts_at->format('jS F Y'),
+                                    $event->id => $event->starts_at->format('jS F Y') .
+                                        (in_array($event->id, $bookedEventIds) ? ' (Already booked)' : ''),
                                 ]);
+                        })
+                        ->disableOptionWhen(function ($value) {
+                            $bookedEventIds = $this->getOwnerRecord()->events()->pluck('events.id')->toArray();
+                            return in_array($value, $bookedEventIds);
                         })),
             ])
             ->recordActions([
                 EditAction::make(),
-                DetachAction::make(),
-                ForceDeleteAction::make(),
-                RestoreAction::make(),
+                DetachAction::make()
+                    ->label('Cancel')
+                    ->modalHeading('Cancel Booking')
+                    ->modalDescription('Are you sure you want to cancel this booking?')
+                    ->modalSubmitActionLabel('Cancel Booking')
+                    ->hidden(fn ($record) => $record->ends_at < now()),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DetachBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
+                    DetachBulkAction::make()
+                        ->label('Cancel selected')
+                        ->deselectRecordsAfterCompletion()
+                        ->action(function ($records) {
+                            foreach ($records as $record) {
+                                if ($record->ends_at >= now()) {
+                                    $this->getOwnerRecord()->events()->detach($record->id);
+                                }
+                            }
+                        }),
                 ]),
             ])
             ->modifyQueryUsing(fn (Builder $query) => $query
