@@ -112,12 +112,13 @@ class EventsRelationManager extends RelationManager
                                 ->orderBy('starts_at', 'asc')
                                 ->get()
                                 ->mapWithKeys(fn ($event) => [
-                                    $event->id => $event->starts_at->format('jS F Y') .
+                                    $event->id => $event->starts_at->format('jS F Y').
                                         (in_array($event->id, $bookedEventIds) ? ' (Already booked)' : ''),
                                 ]);
                         })
                         ->disableOptionWhen(function ($value) {
                             $bookedEventIds = $this->getOwnerRecord()->events()->pluck('events.id')->toArray();
+
                             return in_array($value, $bookedEventIds);
                         })),
             ])
@@ -152,6 +153,10 @@ class EventsRelationManager extends RelationManager
 
     public function isReadOnly(): bool
     {
+        if ($this->getOwnerRecord()->trashed()) {
+            return true;
+        }
+
         return Auth::user()?->can('manage-items') ? false : true;
     }
 }

@@ -37,10 +37,15 @@ class ViewItem extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            EditAction::make()->modal(),
-            DeleteAction::make(),
-            ForceDeleteAction::make(),
-            RestoreAction::make(),
+            EditAction::make()
+                ->modal()
+                ->hidden(fn (): bool => $this->record->trashed()),
+            DeleteAction::make()
+                ->hidden(fn (): bool => $this->record->trashed()),
+            RestoreAction::make()
+                ->visible(fn (): bool => $this->record->trashed()),
+            ForceDeleteAction::make()
+                ->visible(fn (): bool => $this->record->trashed()),
         ];
     }
 }

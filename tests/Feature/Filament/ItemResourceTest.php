@@ -418,3 +418,92 @@ describe('Delete Item', function () {
         expect(Item::withTrashed()->find($item->id))->toBeNull();
     });
 });
+
+describe('Soft Deleted Items Read-Only Behavior', function () {
+    test('edit action is hidden on view page when item is soft deleted', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $owner = User::factory()->create(['email_verified_at' => now()]);
+        $category = Category::factory()->create();
+        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+
+        $item = Item::factory()->create([
+            'user_id' => $owner->id,
+            'category_id' => $category->id,
+        ]);
+        $item->delete();
+
+        Livewire::actingAs($user)
+            ->test(ViewItem::class, ['record' => $item->id])
+            ->assertActionHidden('edit');
+    });
+
+    test('delete action is hidden on view page when item is soft deleted', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $owner = User::factory()->create(['email_verified_at' => now()]);
+        $category = Category::factory()->create();
+        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+
+        $item = Item::factory()->create([
+            'user_id' => $owner->id,
+            'category_id' => $category->id,
+        ]);
+        $item->delete();
+
+        Livewire::actingAs($user)
+            ->test(ViewItem::class, ['record' => $item->id])
+            ->assertActionHidden('delete');
+    });
+
+    test('restore action is visible on view page when item is soft deleted', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $owner = User::factory()->create(['email_verified_at' => now()]);
+        $category = Category::factory()->create();
+        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+
+        $item = Item::factory()->create([
+            'user_id' => $owner->id,
+            'category_id' => $category->id,
+        ]);
+        $item->delete();
+
+        Livewire::actingAs($user)
+            ->test(ViewItem::class, ['record' => $item->id])
+            ->assertActionVisible('restore');
+    });
+
+    test('force delete action is visible on view page when item is soft deleted', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $owner = User::factory()->create(['email_verified_at' => now()]);
+        $category = Category::factory()->create();
+        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+
+        $item = Item::factory()->create([
+            'user_id' => $owner->id,
+            'category_id' => $category->id,
+        ]);
+        $item->delete();
+
+        Livewire::actingAs($user)
+            ->test(ViewItem::class, ['record' => $item->id])
+            ->assertActionVisible('forceDelete');
+    });
+
+    test('edit and delete actions are visible when item is not soft deleted', function () {
+        $user = User::factory()->create(['email_verified_at' => now()]);
+        $owner = User::factory()->create(['email_verified_at' => now()]);
+        $category = Category::factory()->create();
+        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+
+        $item = Item::factory()->create([
+            'user_id' => $owner->id,
+            'category_id' => $category->id,
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(ViewItem::class, ['record' => $item->id])
+            ->assertActionVisible('edit')
+            ->assertActionVisible('delete')
+            ->assertActionHidden('restore')
+            ->assertActionHidden('forceDelete');
+    });
+});
