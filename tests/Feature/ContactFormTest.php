@@ -31,7 +31,7 @@ test('contact form submits successfully with valid data', function () {
         ->assertSet('message', '');
 
     Mail::assertSent(ContactMail::class, function ($mail) {
-        return $mail->hasTo('repaircafe@leightonbuzzard.org')
+        return $mail->hasTo(config('mail.contact_address'))
             && $mail->name === 'John Doe'
             && $mail->email === 'john@example.com'
             && $mail->contactSubject === 'Test Subject'
