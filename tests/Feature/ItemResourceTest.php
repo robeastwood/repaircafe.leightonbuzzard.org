@@ -269,8 +269,10 @@ describe('Item Policy - View Page Actions', function () {
 
 describe('Item View - Deleted Status', function () {
     test('view page shows DELETED badge in title for soft deleted items', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo('access-admin-panel');
+        $user->givePermissionTo(['access-admin-panel', 'super-admin']);
 
         $item = Item::factory()->create(['user_id' => $user->id]);
         $item->delete();

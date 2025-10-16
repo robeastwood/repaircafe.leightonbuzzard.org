@@ -377,10 +377,12 @@ describe('Delete Item', function () {
     });
 
     test('can restore soft deleted item', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
         $owner = User::factory()->create(['email_verified_at' => now()]);
         $category = Category::factory()->create();
-        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-items', 'super-admin']);
 
         $item = Item::factory()->create([
             'user_id' => $owner->id,
@@ -398,10 +400,12 @@ describe('Delete Item', function () {
     });
 
     test('can force delete item', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
         $owner = User::factory()->create(['email_verified_at' => now()]);
         $category = Category::factory()->create();
-        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-items', 'super-admin']);
 
         $item = Item::factory()->create([
             'user_id' => $owner->id,
@@ -420,11 +424,15 @@ describe('Delete Item', function () {
 });
 
 describe('Soft Deleted Items Read-Only Behavior', function () {
+    beforeEach(function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+    });
+
     test('edit action is hidden on view page when item is soft deleted', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
         $owner = User::factory()->create(['email_verified_at' => now()]);
         $category = Category::factory()->create();
-        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-items', 'super-admin']);
 
         $item = Item::factory()->create([
             'user_id' => $owner->id,
@@ -441,7 +449,7 @@ describe('Soft Deleted Items Read-Only Behavior', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
         $owner = User::factory()->create(['email_verified_at' => now()]);
         $category = Category::factory()->create();
-        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-items', 'super-admin']);
 
         $item = Item::factory()->create([
             'user_id' => $owner->id,
@@ -458,7 +466,7 @@ describe('Soft Deleted Items Read-Only Behavior', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
         $owner = User::factory()->create(['email_verified_at' => now()]);
         $category = Category::factory()->create();
-        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-items', 'super-admin']);
 
         $item = Item::factory()->create([
             'user_id' => $owner->id,
@@ -475,7 +483,7 @@ describe('Soft Deleted Items Read-Only Behavior', function () {
         $user = User::factory()->create(['email_verified_at' => now()]);
         $owner = User::factory()->create(['email_verified_at' => now()]);
         $category = Category::factory()->create();
-        $user->givePermissionTo(['access-admin-panel', 'manage-items']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-items', 'super-admin']);
 
         $item = Item::factory()->create([
             'user_id' => $owner->id,

@@ -374,8 +374,10 @@ describe('Delete Event', function () {
     });
 
     test('can restore soft deleted event', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo(['access-admin-panel', 'manage-events']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-events', 'super-admin']);
 
         $venue = Venue::factory()->create();
         $event = Event::factory()->create(['venue_id' => $venue->id]);
@@ -391,8 +393,10 @@ describe('Delete Event', function () {
     });
 
     test('can force delete event', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo(['access-admin-panel', 'manage-events']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-events', 'super-admin']);
 
         $venue = Venue::factory()->create();
         $event = Event::factory()->create(['venue_id' => $venue->id]);

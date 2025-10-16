@@ -259,8 +259,10 @@ describe('Delete Venue', function () {
     });
 
     test('can restore soft deleted venue', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo(['access-admin-panel', 'manage-venues']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-venues', 'super-admin']);
 
         $venue = Venue::factory()->create([
             'name' => 'Deleted Venue',
@@ -278,8 +280,10 @@ describe('Delete Venue', function () {
     });
 
     test('can force delete venue', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo(['access-admin-panel', 'manage-venues']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-venues', 'super-admin']);
 
         $venue = Venue::factory()->create([
             'name' => 'Venue to Force Delete',

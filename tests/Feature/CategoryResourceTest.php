@@ -302,8 +302,10 @@ describe('Delete Category', function () {
     });
 
     test('can restore soft deleted category', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo(['access-admin-panel', 'manage-categories']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-categories', 'super-admin']);
 
         $category = Category::factory()->create([
             'name' => 'Deleted Category',
@@ -321,8 +323,10 @@ describe('Delete Category', function () {
     });
 
     test('can force delete category', function () {
+        Permission::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'web']);
+
         $user = User::factory()->create(['email_verified_at' => now()]);
-        $user->givePermissionTo(['access-admin-panel', 'manage-categories']);
+        $user->givePermissionTo(['access-admin-panel', 'manage-categories', 'super-admin']);
 
         $category = Category::factory()->create([
             'name' => 'Category to Force Delete',
