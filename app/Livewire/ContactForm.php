@@ -44,7 +44,7 @@ class ContactForm extends Component
     {
         $validated = $this->validate();
 
-        Mail::to(env('MAIL_CONTACT_ADDRESS'))->send(
+        Mail::to(config('mail.contact_address'))->send(
             new ContactMail(
                 name: $validated['name'],
                 email: $validated['email'],
