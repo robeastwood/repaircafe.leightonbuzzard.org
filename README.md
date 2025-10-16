@@ -89,6 +89,24 @@ php artisan migrate
 npm run build
 ```
 
+### Database Seeding
+
+After running migrations, you can populate the database with test data:
+
+```bash
+php artisan db:seed
+```
+
+**Important:** To access the admin panel at `/admin`, you'll probably want to grant yourself the `admin` role. You can do this using Laravel Tinker:
+
+```bash
+php artisan tinker
+>>> $user = \App\Models\User::where('email', 'your@email.com')->first();
+>>> $user->assignRole('admin');
+```
+
+Or update the database directly to assign the admin role to your user account.
+
 ## Development
 
 ### Using Laravel Herd (Recommended)
