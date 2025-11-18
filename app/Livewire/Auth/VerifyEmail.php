@@ -12,6 +12,16 @@ use Livewire\Component;
 class VerifyEmail extends Component
 {
     /**
+     * Redirect already verified users to the dashboard.
+     */
+    public function mount(): void
+    {
+        if (Auth::user()->hasVerifiedEmail()) {
+            $this->redirectIntended(default: route('filament.dashboard.pages.dashboard', absolute: false), navigate: true);
+        }
+    }
+
+    /**
      * Send an email verification notification to the user.
      */
     public function sendVerification(): void
