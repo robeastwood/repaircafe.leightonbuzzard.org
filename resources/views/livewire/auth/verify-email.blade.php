@@ -1,6 +1,10 @@
 <div class="mt-4 flex flex-col gap-6">
     <flux:text class="text-center">
-        {{ __('Please verify your email address by clicking on the link we just emailed to you.') }}
+        {{ __('Your email address must be verified before you can continue, please check your inbox.') }}        
+    </flux:text>
+
+    <flux:text class="text-center">
+        {{ __('If you did not receive an email, you can click below to have another one sent. Remember to check your spam folder.') }}
     </flux:text>
 
     @if (session('status') == 'verification-link-sent')

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Users\RelationManagers;
 
 use App\Filament\Resources\Items\ItemResource;
+use App\Filament\Resources\Users\Pages\ViewUser;
 use App\Models\Item;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -13,6 +14,9 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
@@ -20,6 +24,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ItemsRelationManager extends RelationManager
@@ -28,10 +33,54 @@ class ItemsRelationManager extends RelationManager
 
     protected static ?string $title = 'Items belonging to this user';
 
+    public static function canViewForRecord(Model $ownerRecord, string $pageClass): bool
+    {
+        return $pageClass === ViewUser::class;
+    }
+
     public function form(Schema $schema): Schema
     {
-        // Use the same form configuration as ItemResource
-        return \App\Filament\Resources\Items\Schemas\ItemForm::configure($schema);
+        // Build form with user_id pre-filled and disabled for this user
+        return $schema
+            ->components([
+                TextInput::make('owner_name')
+                    ->label('Owner')
+                    ->default($this->getOwnerRecord()->name)
+                    ->disabled()
+                    ->dehydrated(false),
+                Select::make('user_id')
+                    ->label('User ID')
+                    ->default($this->getOwnerRecord()->id)
+                    ->required()
+                    ->hidden()
+                    ->dehydrated(),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->native(false)
+                    ->required(),
+                Select::make('status')
+                    ->label('Status')
+                    ->native(false)
+                    ->options(Item::statusOptions())
+                    ->required(),
+                Select::make('powered')
+                    ->label('Power Source')
+                    ->native(false)
+                    ->options(Item::powerOptions())
+                    ->required(),
+                Textarea::make('description')
+                    ->label('Description')
+                    ->required()
+                    ->rows(3)
+                    ->columnSpanFull(),
+                Textarea::make('issue')
+                    ->label('Issue')
+                    ->required()
+                    ->rows(3)
+                    ->columnSpanFull(),
+            ]);
     }
 
     public function table(Table $table): Table
@@ -110,12 +159,7 @@ class ItemsRelationManager extends RelationManager
                     ->label('Add Item')
                     ->modalHeading('Create New Item')
                     ->modalDescription('Add a new item for this user')
-                    ->mutateFormDataUsing(function (array $data): array {
-                        // Automatically set the user_id to the current owner record
-                        $data['user_id'] = $this->getOwnerRecord()->id;
-
-                        return $data;
-                    }),
+                    ->authorize('create'),
             ])
             ->recordActions([
                 EditAction::make(),

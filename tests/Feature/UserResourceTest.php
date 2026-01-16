@@ -20,6 +20,7 @@ beforeEach(function () {
     Permission::firstOrCreate(['name' => 'access-admin-panel', 'guard_name' => 'web']);
     Permission::firstOrCreate(['name' => 'manage-users', 'guard_name' => 'web']);
     Permission::firstOrCreate(['name' => 'manage-permissions', 'guard_name' => 'web']);
+    Permission::firstOrCreate(['name' => 'can-fix', 'guard_name' => 'web']);
 });
 
 describe('User Resource Authorization', function () {

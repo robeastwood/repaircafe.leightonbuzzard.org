@@ -45,3 +45,13 @@ test('email is not verified with invalid hash', function () {
 
     expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
 });
+
+test('verified users are redirected to dashboard from email verification screen', function () {
+    $user = User::factory()->create();
+
+    expect($user->hasVerifiedEmail())->toBeTrue();
+
+    $response = $this->actingAs($user)->get('/verify-email');
+
+    $response->assertRedirect(route('filament.dashboard.pages.dashboard', absolute: false));
+});

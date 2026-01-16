@@ -6,7 +6,6 @@ use App\Filament\Resources\Users\UserResource;
 use App\Models\Item;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
-use Filament\Schemas\Components\Livewire;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -48,11 +47,6 @@ class ItemInfolist
                                     ->label('Last Update')
                                     ->dateTime(),
                             ]),
-                    ])
-                    ->columnSpanFull(),
-                Section::make('Notes History')
-                    ->schema([
-                        Livewire::make(\App\Livewire\Items\NotesTimeline::class, fn ($record) => ['item' => $record]),
                     ])
                     ->columnSpanFull(),
             ]);

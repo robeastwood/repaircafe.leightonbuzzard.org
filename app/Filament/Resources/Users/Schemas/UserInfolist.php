@@ -38,7 +38,7 @@ class UserInfolist
                             ->separator(',')
                             ->label('Skills'),
                     ])
-                    ->visible(fn ($record): bool => $record->skills()->exists()),
+                    ->visible(fn ($record): bool => $record->hasPermissionTo('can-fix') && $record->skills()->exists()),
             ]);
     }
 }

@@ -62,6 +62,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
             ]);
     }
 }

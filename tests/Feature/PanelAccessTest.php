@@ -34,14 +34,16 @@ describe('Admin Panel Access', function () {
         expect($user->canAccessPanel($panel))->toBeFalse();
     });
 
-    test('users with access-admin-panel permission but unverified email cannot access admin panel', function () {
+    test('users with access-admin-panel permission but unverified email can pass canAccessPanel check', function () {
         $user = User::factory()->create(['email_verified_at' => null]);
         $user->givePermissionTo('access-admin-panel');
 
         Filament::setCurrentPanel('admin');
         $panel = Filament::getCurrentPanel();
 
-        expect($user->canAccessPanel($panel))->toBeFalse();
+        // canAccessPanel now only checks permission, not email verification
+        // Email verification is handled by middleware
+        expect($user->canAccessPanel($panel))->toBeTrue();
     });
 
     test('users without permission and unverified email cannot access admin panel', function () {
@@ -69,6 +71,15 @@ describe('Admin Panel Access', function () {
             ->get('/admin')
             ->assertSuccessful();
     });
+
+    test('authenticated users with permission but unverified email are redirected to verify-email page', function () {
+        $user = User::factory()->create(['email_verified_at' => null]);
+        $user->givePermissionTo('access-admin-panel');
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertRedirect(route('verification.notice'));
+    });
 });
 
 describe('Dashboard Panel Access', function () {
@@ -81,13 +92,14 @@ describe('Dashboard Panel Access', function () {
         expect($user->canAccessPanel($panel))->toBeTrue();
     });
 
-    test('users with unverified email cannot access dashboard panel', function () {
+    test('users with unverified email can pass canAccessPanel check for dashboard', function () {
         $user = User::factory()->create(['email_verified_at' => null]);
 
         Filament::setCurrentPanel('dashboard');
         $panel = Filament::getCurrentPanel();
 
-        expect($user->canAccessPanel($panel))->toBeFalse();
+        // canAccessPanel returns true for dashboard - email verification is handled by middleware
+        expect($user->canAccessPanel($panel))->toBeTrue();
     });
 
     test('users do not need special permissions to access dashboard panel', function () {
@@ -108,12 +120,12 @@ describe('Dashboard Panel Access', function () {
             ->assertSuccessful();
     });
 
-    test('authenticated users with unverified email are redirected from dashboard panel', function () {
+    test('authenticated users with unverified email are redirected to verify-email page', function () {
         $user = User::factory()->create(['email_verified_at' => null]);
 
         $this->actingAs($user)
             ->get('/dashboard')
-            ->assertForbidden();
+            ->assertRedirect(route('verification.notice'));
     });
 });
 
