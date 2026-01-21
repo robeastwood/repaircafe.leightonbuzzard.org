@@ -23,6 +23,10 @@ class EventController extends Controller
 
     public function cards($id)
     {
-        return view('event-cards', ['items' => Event::findOrFail($id)->items()->get()]);
+        $event = Event::with('venue')->findOrFail($id);
+        return view('event-cards', [
+            'event' => $event,
+            'items' => $event->items()->with(['category', 'user'])->get()
+        ]);
     }
 }
