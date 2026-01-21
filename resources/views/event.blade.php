@@ -9,6 +9,7 @@
                     </h2>
                     @if (Auth::user()->is_admin)
                         <x-abutton class="ml-5" href="{{ route('checkin', $event->id) }}">Check In</x-abutton>
+                        <x-abutton class="ml-5" href="{{ route('eventCards', $event->id) }}">Item Cards</x-abutton>
                     @endif
                 </div>
             </div>
