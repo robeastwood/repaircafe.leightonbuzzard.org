@@ -156,11 +156,23 @@
             padding: 0.75rem;
         }
 
-        /* Print styles */
+        /* Print styles - 3 columns */
         @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0.5cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
             body {
                 background: white;
                 padding: 0;
+                font-size: 9pt;
             }
 
             .print-header {
@@ -168,41 +180,71 @@
             }
 
             .cards-container {
-                display: block;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.4cm;
             }
 
             .item-card {
                 max-width: 100%;
-                border: 2px solid #000;
+                border: 2px solid #000 !important;
+                border-radius: 0 !important;
                 box-shadow: none;
-                margin-bottom: 1rem;
+                padding: 0.5rem;
                 page-break-inside: avoid;
-                page-break-after: always;
             }
 
-            .item-card:last-child {
-                page-break-after: auto;
+            .card-header {
+                padding-bottom: 0.3rem;
+                margin-bottom: 0.4rem;
+                border-bottom: 2px solid #000 !important;
             }
 
-            .status-badge, .powered-badge {
-                border: 1px solid #000;
-            }
-        }
-
-        /* Two cards per page for print */
-        @media print {
-            @page {
-                size: A4;
-                margin: 1cm;
+            .item-id {
+                font-size: 1.2rem;
             }
 
-            .item-card {
-                height: calc(50vh - 1.5cm);
-                page-break-after: avoid;
+            .item-id span {
+                font-size: 0.7rem;
             }
 
-            .item-card:nth-child(2n) {
-                page-break-after: always;
+            .status-badge {
+                font-size: 0.65rem;
+                padding: 0.1rem 0.4rem;
+                border: 1px solid #000 !important;
+                border-radius: 0 !important;
+            }
+
+            .card-section {
+                margin-bottom: 0.4rem;
+            }
+
+            .section-label {
+                font-size: 0.6rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .section-value {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .section-value.large {
+                font-size: 0.85rem;
+            }
+
+            .powered-badge {
+                font-size: 0.65rem;
+                padding: 0.1rem 0.3rem;
+                border: 1px solid #000 !important;
+                border-radius: 0 !important;
+            }
+
+            .customer-box {
+                padding: 0.3rem;
+                font-size: 0.75rem;
+                border: 1px solid #166534 !important;
+                border-radius: 0 !important;
             }
         }
     </style>
